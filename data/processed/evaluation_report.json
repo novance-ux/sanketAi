@@ -1,0 +1,32 @@
+{
+  "generated_at": "2026-10-13T17:32:48+00:00",
+  "mines_evaluated": 68,
+  "plan_generator": "offline",
+  "semantic_index": "available",
+  "mine_identity_accuracy": {
+    "checked": 513,
+    "correct": 513,
+    "percent": 100.0
+  },
+  "citation_correctness": {
+    "checked": 90,
+    "verified_on_cited_pages": 90,
+    "percent": 100.0,
+    "not_verified": []
+  },
+  "retrieval_relevance_top1": {
+    "queries": 14,
+    "note": "Only mines with more than one record are queried; a single-record mine is trivially correct.",
+    "keyword_only_percent": 100.0,
+    "hybrid_percent": 100.0
+  },
+  "plans": {
+    "generated": 68,
+    "passed_validation": 68,
+    "steps": 912,
+    "evidence_backed_steps": 232,
+    "validator_issues": 0,
+    "unsupported_statements_removed": 0,
+    "unsupported_claim_rate_percent": 0.0
+  }
+}

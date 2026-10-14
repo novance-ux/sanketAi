@@ -1,0 +1,22 @@
+# Core application
+streamlit>=1.40
+plotly>=5.24
+pandas>=2.2
+pydantic>=2.9
+python-dotenv>=1.0
+
+# Document processing
+pymupdf>=1.25
+rapidfuzz>=3.10
+
+# Retrieval
+chromadb>=0.5.20
+
+# Agent orchestration (LangChain is the single orchestration framework)
+langchain-core>=0.3.25
+langchain-anthropic>=0.3.0
+langchain-openai>=0.2.12
+langchain-ollama>=0.2.1
+
+# Testing
+pytest>=8.3

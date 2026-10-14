@@ -1,0 +1,23 @@
+# secrets and local configuration
+.env
+.streamlit/secrets.toml
+
+# python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# generated data (rebuild with `python -m src.ingestion`)
+data/processed/*
+!data/processed/extraction_audit.md
+!data/processed/extraction_report.json
+!data/processed/evaluation_report.json
+*.sqlite3
+*.sqlite3.tmp
+
+# editors / OS
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store

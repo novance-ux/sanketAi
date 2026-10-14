@@ -1,0 +1,19 @@
+[theme]
+base = "light"
+primaryColor = "#184f95"
+backgroundColor = "#fcfcfb"
+secondaryBackgroundColor = "#f3f3f0"
+textColor = "#0b0b0b"
+font = "sans serif"
+
+[server]
+# Listen on this machine only. Change deliberately (and add authentication) before
+# exposing the app on a network.
+address = "localhost"
+
+[browser]
+gatherUsageStats = false
+
+[client]
+showSidebarNavigation = false
+toolbarMode = "minimal"

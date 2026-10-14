@@ -1,0 +1,11 @@
+{
+  "_comment": "Curated spelling variants. Keys and values are mine names as printed in the PDFs; a variant on the left is treated as the same mine as the name on the right, within one category. Add an entry only after checking both records against the source pages. Automatically detected look-alikes are listed, unmerged, in data/processed/extraction_audit.md.",
+  "_rationale": "Central Sounda/Saunda: one-letter variant inside the same table (coal volume pp. 304, 306, 309, 310). Burra Dhemo/Burradhemo: spacing variant inside the same table. Purnadih Navada/Nawada Stone Mine: one-letter variant, same district (Koderma) and state in both records.",
+  "coal": {
+    "Central Sounda": "Central Saunda",
+    "Burra Dhemo": "Burradhemo"
+  },
+  "metal_non_coal": {
+    "PURNADIH NAVADA STONE MINE": "PURNADIH NAWADA STONE MINE"
+  }
+}

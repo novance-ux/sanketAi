@@ -1,0 +1,5436 @@
+{
+  "generated_at": "2026-10-13T17:32:42+00:00",
+  "pipeline_version": "1.0.0",
+  "documents": [
+    {
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "sha256": "e561ea9b622348eef52689e8f360c0015f2bbcd5f205ce83be9aca800932c682",
+      "volume": "SANKET - Trends in Non-Coal Mine Accidents",
+      "mine_category": "metal_non_coal",
+      "pages_processed": 355,
+      "pages_with_selectable_text": 347,
+      "image_only_pages": [
+        2,
+        14
+      ],
+      "blank_pages": [
+        4,
+        6,
+        8,
+        10,
+        12,
+        353
+      ],
+      "ocr": "Not required: every record-bearing page has a selectable text layer. Image-only pages are covers, section dividers and chart graphics.",
+      "section_pages": {
+        "fatal_accident_summaries": [
+          66,
+          345
+        ],
+        "major_accidents_since_1901": [
+          345,
+          348
+        ],
+        "courts_of_inquiry": [
+          349,
+          349
+        ]
+      },
+      "records_extracted": {
+        "fatal_accident_summaries": 284,
+        "major_accident_table_rows": 105,
+        "court_of_inquiry_rows": 6,
+        "total": 395
+      },
+      "fatal_accident_cross_check": [
+        {
+          "year": 2016,
+          "stated_in_volume": 39,
+          "parsed": 39,
+          "match": true
+        },
+        {
+          "year": 2017,
+          "stated_in_volume": 42,
+          "parsed": 42,
+          "match": true
+        },
+        {
+          "year": 2018,
+          "stated_in_volume": 45,
+          "parsed": 45,
+          "match": true
+        },
+        {
+          "year": 2019,
+          "stated_in_volume": 45,
+          "parsed": 45,
+          "match": true
+        },
+        {
+          "year": 2020,
+          "stated_in_volume": 40,
+          "parsed": 40,
+          "match": true
+        },
+        {
+          "year": 2021,
+          "stated_in_volume": 33,
+          "parsed": 33,
+          "match": true
+        },
+        {
+          "year": 2022,
+          "stated_in_volume": 40,
+          "parsed": 40,
+          "match": true
+        }
+      ],
+      "extraction_warnings": []
+    },
+    {
+      "source_filename": "sanket0404_2024.pdf",
+      "sha256": "9fb5c1a4139daa3cfe6e745b9c5c78c880443740fbbe5521e41a5738630313b1",
+      "volume": "SANKET - Trends in Coal Mine Accidents",
+      "mine_category": "coal",
+      "pages_processed": 316,
+      "pages_with_selectable_text": 299,
+      "image_only_pages": [
+        2,
+        29,
+        36,
+        83,
+        121,
+        158,
+        197,
+        235,
+        272,
+        313
+      ],
+      "blank_pages": [
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        314
+      ],
+      "ocr": "Not required: every record-bearing page has a selectable text layer. Image-only pages are covers, section dividers and chart graphics.",
+      "section_pages": {
+        "fatal_accident_summaries": [
+          49,
+          299
+        ],
+        "major_accidents_since_1901": [
+          299,
+          306
+        ],
+        "courts_of_inquiry": [
+          307,
+          310
+        ]
+      },
+      "records_extracted": {
+        "fatal_accident_summaries": 338,
+        "major_accident_table_rows": 278,
+        "court_of_inquiry_rows": 52,
+        "total": 668
+      },
+      "fatal_accident_cross_check": [
+        {
+          "year": 2016,
+          "stated_in_volume": 67,
+          "parsed": 67,
+          "match": true
+        },
+        {
+          "year": 2017,
+          "stated_in_volume": 56,
+          "parsed": 56,
+          "match": true
+        },
+        {
+          "year": 2018,
+          "stated_in_volume": 49,
+          "parsed": 49,
+          "match": true
+        },
+        {
+          "year": 2019,
+          "stated_in_volume": 51,
+          "parsed": 51,
+          "match": true
+        },
+        {
+          "year": 2020,
+          "stated_in_volume": 48,
+          "parsed": 48,
+          "match": true
+        },
+        {
+          "year": 2021,
+          "stated_in_volume": 43,
+          "parsed": 43,
+          "match": true
+        },
+        {
+          "year": 2022,
+          "stated_in_volume": 24,
+          "parsed": 24,
+          "match": true
+        }
+      ],
+      "extraction_warnings": []
+    }
+  ],
+  "unreadable_documents": [],
+  "totals": {
+    "mines": 769,
+    "incidents": 1006,
+    "preventive_findings": 1537,
+    "source_references": 1063,
+    "water_related_incidents": 73,
+    "raw_records_extracted": 1063
+  },
+  "by_category": {
+    "coal": {
+      "label": "Coal Mines",
+      "mines": 433,
+      "mines_with_water_related_records": 51,
+      "mines_identified_by_name_only": 219,
+      "incidents": 620,
+      "incidents_by_water_relevance": {
+        "none": 565,
+        "water_keyword": 5,
+        "irruption": 38,
+        "drowning": 12
+      },
+      "year_range": [
+        1901,
+        2022
+      ]
+    },
+    "metal_non_coal": {
+      "label": "Metal / Non-Coal Mines",
+      "mines": 336,
+      "mines_with_water_related_records": 17,
+      "mines_identified_by_name_only": 88,
+      "incidents": 386,
+      "incidents_by_water_relevance": {
+        "none": 368,
+        "drowning": 4,
+        "water_keyword": 10,
+        "irruption": 4
+      },
+      "year_range": [
+        1901,
+        2022
+      ]
+    }
+  },
+  "water_related_records": [
+    {
+      "incident_id": "coal-2020-F038",
+      "mine_id": "coal-amalgamated-amlo-dhori-ocm-c30e3e73",
+      "mine_name": "AMALGAMATED AMLO-DHORI OCM",
+      "mine_category": "coal",
+      "state": "Jharkhand",
+      "district": "Bokaro",
+      "date_text": "12.05.20",
+      "year": 2020,
+      "cause_in_source": "Fall of Person from Height/into Depth",
+      "water_relevance": "water_keyword",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            229
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-2016-F028",
+      "mine_id": "coal-amlo-dd1af2b5",
+      "mine_name": "AMLO",
+      "mine_category": "coal",
+      "state": "Jharkhand",
+      "district": "Bokaro",
+      "date_text": "09.04.16",
+      "year": 2016,
+      "cause_in_source": "Dumpers",
+      "water_relevance": "water_keyword",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            63
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-263",
+      "mine_id": "coal-bagdigi-da5b41a8",
+      "mine_name": "Bagdigi",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "02-02-2001",
+      "year": 2001,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 29,
+      "sections": [
+        "major_accident_table",
+        "court_of_inquiry_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            305
+          ]
+        },
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            310
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-COI-42b",
+      "mine_id": "coal-bera-1d33f3f0",
+      "mine_name": "Bera",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "26/09/95",
+      "year": 1995,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 3,
+      "sections": [
+        "court_of_inquiry_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            310
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-065",
+      "mine_id": "coal-bhaskajuri-ba665113",
+      "mine_name": "Bhaskajuri",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "20-12-1928",
+      "year": 1928,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 7,
+      "sections": [
+        "major_accident_table",
+        "court_of_inquiry_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            300
+          ]
+        },
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            307
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-022",
+      "mine_id": "coal-bhatdih-eec9d3d1",
+      "mine_name": "Bhatdih",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "08-08-1913",
+      "year": 1913,
+      "cause_in_source": "Irruption of water",
+      "water_relevance": "irruption",
+      "persons_killed": 7,
+      "sections": [
+        "major_accident_table",
+        "court_of_inquiry_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            299
+          ]
+        },
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            307
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-166",
+      "mine_id": "coal-binodicutta-845fa2d9",
+      "mine_name": "Binodicutta",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "26-09-1956",
+      "year": 1956,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 4,
+      "sections": [
+        "major_accident_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            303
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-167",
+      "mine_id": "coal-burradhemo-20250efb",
+      "mine_name": "Burradhemo",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "26-09-1956",
+      "year": 1956,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 28,
+      "sections": [
+        "major_accident_table",
+        "court_of_inquiry_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            303
+          ]
+        },
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            308
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-169",
+      "mine_id": "coal-central-bhowrah-8206f5b2",
+      "mine_name": "Central Bhowrah",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "20-02-1958",
+      "year": 1958,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 23,
+      "sections": [
+        "major_accident_table",
+        "court_of_inquiry_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            303
+          ]
+        },
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            308
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-221",
+      "mine_id": "coal-central-saunda-0bf50d3c",
+      "mine_name": "Central Saunda",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "16-09-1976",
+      "year": 1976,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 10,
+      "sections": [
+        "major_accident_table",
+        "court_of_inquiry_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            304
+          ]
+        },
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            309
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-271",
+      "mine_id": "coal-central-saunda-0bf50d3c",
+      "mine_name": "Central Sounda",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "15-06-2005",
+      "year": 2005,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 14,
+      "sections": [
+        "major_accident_table",
+        "court_of_inquiry_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            306
+          ]
+        },
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            310
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-2016-F067",
+      "mine_id": "coal-chasnalla-2bdcb189",
+      "mine_name": "CHASNALLA",
+      "mine_category": "coal",
+      "state": "Jharkhand",
+      "district": "Dhanbad",
+      "date_text": "16.05.16",
+      "year": 2016,
+      "cause_in_source": "Unclassified",
+      "water_relevance": "water_keyword",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            82
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-217",
+      "mine_id": "coal-chasnalla-3bc2595e",
+      "mine_name": "Chasnalla",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "27-12-1975",
+      "year": 1975,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 375,
+      "sections": [
+        "major_accident_table",
+        "court_of_inquiry_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            304
+          ]
+        },
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            309
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-219",
+      "mine_id": "coal-chasnalla-3bc2595e",
+      "mine_name": "Chasnalla",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "05-04-1976",
+      "year": 1976,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 5,
+      "sections": [
+        "major_accident_table",
+        "court_of_inquiry_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            304
+          ]
+        },
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            309
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-148",
+      "mine_id": "coal-chinakuri-7a7b5c98",
+      "mine_name": "Chinakuri",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "24-08-1953",
+      "year": 1953,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 6,
+      "sections": [
+        "major_accident_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            302
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-174",
+      "mine_id": "coal-damua-0a3c5dc5",
+      "mine_name": "Damua",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "05-01-1960",
+      "year": 1960,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 16,
+      "sections": [
+        "major_accident_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            303
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-131",
+      "mine_id": "coal-dhori-76acb564",
+      "mine_name": "Dhori",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "04-10-1950",
+      "year": 1950,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 7,
+      "sections": [
+        "major_accident_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            302
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-123",
+      "mine_id": "coal-ekra-khas-6c1277f7",
+      "mine_name": "Ekra Khas",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "08-10-1948",
+      "year": 1948,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 6,
+      "sections": [
+        "major_accident_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            302
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-2018-F048",
+      "mine_id": "coal-garjanbahal-ocp-mine-295a0240",
+      "mine_name": "GARJANBAHAL OCP MINE",
+      "mine_category": "coal",
+      "state": "Orissa",
+      "district": "Sundergarh",
+      "date_text": "01.09.18",
+      "year": 2018,
+      "cause_in_source": "Drowning in Water",
+      "water_relevance": "drowning",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            157
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-252",
+      "mine_id": "coal-gaslitand-010fe720",
+      "mine_name": "Gaslitand",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "27-09-1995",
+      "year": 1995,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 64,
+      "sections": [
+        "major_accident_table",
+        "court_of_inquiry_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            305
+          ]
+        },
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            310
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-2018-F010",
+      "mine_id": "coal-gevra-project-813113e2",
+      "mine_name": "GEVRA PROJECT",
+      "mine_category": "coal",
+      "state": "Chhattisgarh",
+      "district": "Korba",
+      "date_text": "07.03.18",
+      "year": 2018,
+      "cause_in_source": "Dumpers",
+      "water_relevance": "water_keyword",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            138
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-268",
+      "mine_id": "coal-godavari-khani-no-7-lep-e67407cb",
+      "mine_name": "Godavari Khani No.7 LEP",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "16-06-2003",
+      "year": 2003,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 17,
+      "sections": [
+        "major_accident_table",
+        "court_of_inquiry_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            305
+          ]
+        },
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            310
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-233",
+      "mine_id": "coal-hurriladih-61ba0984",
+      "mine_name": "Hurriladih",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "14-09-1983",
+      "year": 1983,
+      "cause_in_source": "Inundation",
+      "water_relevance": "irruption",
+      "persons_killed": 19,
+      "sections": [
+        "major_accident_table",
+        "court_of_inquiry_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            305
+          ]
+        },
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            309
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-2020-F045",
+      "mine_id": "coal-indaram-khani-no-1a-mine-2d7d4e27",
+      "mine_name": "INDARAM KHANI NO.1A MINE",
+      "mine_category": "coal",
+      "state": "Telangana",
+      "district": "Mancherial",
+      "date_text": "05.07.20",
+      "year": 2020,
+      "cause_in_source": "Drowning in Water",
+      "water_relevance": "drowning",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            232
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-224",
+      "mine_id": "coal-industry-20c97856",
+      "mine_name": "Industry",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "17-08-1978",
+      "year": 1978,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 4,
+      "sections": [
+        "major_accident_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            304
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-021",
+      "mine_id": "coal-jamadoba-e580981d",
+      "mine_name": "Jamadoba",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "07-08-1913",
+      "year": 1913,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 7,
+      "sections": [
+        "major_accident_table",
+        "court_of_inquiry_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            299
+          ]
+        },
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            307
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-020",
+      "mine_id": "coal-jotejanake-9460aa93",
+      "mine_name": "Jotejanake",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "28-06-1913",
+      "year": 1913,
+      "cause_in_source": "Irruption of water",
+      "water_relevance": "irruption",
+      "persons_killed": 13,
+      "sections": [
+        "major_accident_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            299
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-2018-F046",
+      "mine_id": "coal-kakatiya-khani-no-1-1a-incline-81c6f2ae",
+      "mine_name": "KAKATIYA KHANI NO 1 &1A INCLINE",
+      "mine_category": "coal",
+      "state": "Telangana",
+      "district": "Warangal",
+      "date_text": "26.12.18",
+      "year": 2018,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            155,
+            156
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-253",
+      "mine_id": "coal-katras-choitodih-2cd241a3",
+      "mine_name": "Katras-Choitodih",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "27-09-1995",
+      "year": 1995,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 4,
+      "sections": [
+        "major_accident_table",
+        "court_of_inquiry_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            305
+          ]
+        },
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            310
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-190",
+      "mine_id": "coal-kendwadih-4be8c655",
+      "mine_name": "Kendwadih",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "22-04-1965",
+      "year": 1965,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 6,
+      "sections": [
+        "major_accident_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            303
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-2020-F043",
+      "mine_id": "coal-khoodia-816e5a2a",
+      "mine_name": "KHOODIA",
+      "mine_category": "coal",
+      "state": "Jharkhand",
+      "district": "Dhanbad",
+      "date_text": "08.12.20",
+      "year": 2020,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 2,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            231
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-2017-F055",
+      "mine_id": "coal-kuardih-00006076",
+      "mine_name": "KUARDIH",
+      "mine_category": "coal",
+      "state": "West Bengal",
+      "district": "Burdwan",
+      "date_text": "25.07.17",
+      "year": 2017,
+      "cause_in_source": "Drowning in Water",
+      "water_relevance": "drowning",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            119
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-2020-F047",
+      "mine_id": "coal-kusmunda-ocp-5bfa296e",
+      "mine_name": "KUSMUNDA OCP",
+      "mine_category": "coal",
+      "state": "Chhattisgarh",
+      "district": "Korba",
+      "date_text": "23.07.20",
+      "year": 2020,
+      "cause_in_source": "Drowning in Water",
+      "water_relevance": "drowning",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            233
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-165",
+      "mine_id": "coal-lodna-98f7f357",
+      "mine_name": "Lodna",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "12-09-1956",
+      "year": 1956,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 4,
+      "sections": [
+        "major_accident_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            303
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-081",
+      "mine_id": "coal-loyabad-fade566b",
+      "mine_name": "Loyabad",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "16-01-1935",
+      "year": 1935,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 11,
+      "sections": [
+        "major_accident_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            301
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-245",
+      "mine_id": "coal-mahabir-r-8ec38c7f",
+      "mine_name": "Mahabir(R)",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "13-11-1989",
+      "year": 1989,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 6,
+      "sections": [
+        "major_accident_table",
+        "court_of_inquiry_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            305
+          ]
+        },
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            310
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-146",
+      "mine_id": "coal-majri-ed19d5a3",
+      "mine_name": "Majri",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "05-08-1953",
+      "year": 1953,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 11,
+      "sections": [
+        "major_accident_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            302
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-103",
+      "mine_id": "coal-makerwal-54e32cbe",
+      "mine_name": "Makerwal",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "06-07-1942",
+      "year": 1942,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 14,
+      "sections": [
+        "major_accident_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            301
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-2020-F046",
+      "mine_id": "coal-moonidih-project-ebd0b89d",
+      "mine_name": "MOONIDIH PROJECT",
+      "mine_category": "coal",
+      "state": "Jharkhand",
+      "district": "Dhanbad",
+      "date_text": "21.07.20",
+      "year": 2020,
+      "cause_in_source": "Drowning in Water",
+      "water_relevance": "drowning",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            232,
+            233
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-014",
+      "mine_id": "coal-murulidih-041fb27e",
+      "mine_name": "Murulidih",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "26-10-1910",
+      "year": 1910,
+      "cause_in_source": "Irruption of water",
+      "water_relevance": "irruption",
+      "persons_killed": 6,
+      "sections": [
+        "major_accident_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            299
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-038",
+      "mine_id": "coal-namma-c65fd41a",
+      "mine_name": "Namma",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "04-08-1920",
+      "year": 1920,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 8,
+      "sections": [
+        "major_accident_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            300
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-157",
+      "mine_id": "coal-newton-chikli-85aff923",
+      "mine_name": "Newton Chikli",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "10-12-1954",
+      "year": 1954,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 63,
+      "sections": [
+        "major_accident_table",
+        "court_of_inquiry_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            303
+          ]
+        },
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            308
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-2019-F046",
+      "mine_id": "coal-neyveli-no-1-6c4b82cc",
+      "mine_name": "NEYVELI NO 1",
+      "mine_category": "coal",
+      "state": "Tamil Nadu",
+      "district": "Cuddalore",
+      "date_text": "30.01.19",
+      "year": 2019,
+      "cause_in_source": "Drowning in Water",
+      "water_relevance": "drowning",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            194
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-2016-F065",
+      "mine_id": "coal-neyveli-no-2-054683f2",
+      "mine_name": "NEYVELI NO 2",
+      "mine_category": "coal",
+      "state": "Tamil Nadu",
+      "district": "Cuddalore",
+      "date_text": "01.02.16",
+      "year": 2016,
+      "cause_in_source": "Drowning in Water",
+      "water_relevance": "drowning",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            81
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-2016-F066",
+      "mine_id": "coal-neyveli-no-2-054683f2",
+      "mine_name": "NEYVELI NO 2",
+      "mine_category": "coal",
+      "state": "Tamil Nadu",
+      "district": "Cuddalore",
+      "date_text": "16.02.16",
+      "year": 2016,
+      "cause_in_source": "Drowning in Water",
+      "water_relevance": "drowning",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            81,
+            82
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-2018-F047",
+      "mine_id": "coal-neyveli-no-2-054683f2",
+      "mine_name": "NEYVELI NO 2",
+      "mine_category": "coal",
+      "state": "Tamil Nadu",
+      "district": "Cuddalore",
+      "date_text": "02.03.18",
+      "year": 2018,
+      "cause_in_source": "Drowning in Water",
+      "water_relevance": "drowning",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            156
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-2021-F041",
+      "mine_id": "coal-nimcha-r-9d76e16b",
+      "mine_name": "NIMCHA (R)",
+      "mine_category": "coal",
+      "state": "West Bengal",
+      "district": "Burdwan",
+      "date_text": "31.07.21",
+      "year": 2021,
+      "cause_in_source": "Drowning in Water",
+      "water_relevance": "drowning",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            270
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-2021-F040",
+      "mine_id": "coal-pauni-o-c-76b622b5",
+      "mine_name": "PAUNI O.C",
+      "mine_category": "coal",
+      "state": "Maharashtra",
+      "district": "Chandrapur",
+      "date_text": "03.04.21",
+      "year": 2021,
+      "cause_in_source": "Drowning in Water",
+      "water_relevance": "drowning",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            269
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-018",
+      "mine_id": "coal-phularitand-a6263170",
+      "mine_name": "phularitand",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "11-07-1912",
+      "year": 1912,
+      "cause_in_source": "Irruption of water",
+      "water_relevance": "irruption",
+      "persons_killed": 21,
+      "sections": [
+        "major_accident_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            299
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-104",
+      "mine_id": "coal-pinalgoria-73654661",
+      "mine_name": "Pinalgoria",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "17-07-1942",
+      "year": 1942,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 4,
+      "sections": [
+        "major_accident_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            301
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-2017-F017",
+      "mine_id": "coal-samleswari-ocp-b2785ccb",
+      "mine_name": "SAMLESWARI OCP",
+      "mine_category": "coal",
+      "state": "Orissa",
+      "district": "Jharsuguda",
+      "date_text": "21.03.17",
+      "year": 2017,
+      "cause_in_source": "Dumpers",
+      "water_relevance": "water_keyword",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            102
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-2017-F054",
+      "mine_id": "coal-sayal-d-65bbd512",
+      "mine_name": "SAYAL \"D\"",
+      "mine_category": "coal",
+      "state": "Jharkhand",
+      "district": "Hazaribagh",
+      "date_text": "16.08.17",
+      "year": 2017,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 2,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            118,
+            119
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-MAJ-216",
+      "mine_id": "coal-silewara-1844d098",
+      "mine_name": "Silewara",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "18-11-1975",
+      "year": 1975,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 10,
+      "sections": [
+        "major_accident_table",
+        "court_of_inquiry_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            304
+          ]
+        },
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            309
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-2020-F044",
+      "mine_id": "coal-sodepur-09c655f6",
+      "mine_name": "SODEPUR",
+      "mine_category": "coal",
+      "state": "West Bengal",
+      "district": "Burdwan",
+      "date_text": "11.01.20",
+      "year": 2020,
+      "cause_in_source": "Drowning in Water",
+      "water_relevance": "drowning",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            232
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "coal-COI-42c",
+      "mine_id": "coal-south-gobindpur-79fe6cce",
+      "mine_name": "South Gobindpur",
+      "mine_category": "coal",
+      "state": null,
+      "district": null,
+      "date_text": "26/09/95",
+      "year": 1995,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 3,
+      "sections": [
+        "court_of_inquiry_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "sanket0404_2024.pdf",
+          "pages": [
+            310
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "mnc-2021-F032",
+      "mine_id": "mnc-bharuch-exploratory-oil-gas-mine-c25d98c7",
+      "mine_name": "BHARUCH EXPLORATORY OIL & GAS MINE",
+      "mine_category": "metal_non_coal",
+      "state": "Gujarat",
+      "district": "Bharuch",
+      "date_text": "07.05.21",
+      "year": 2021,
+      "cause_in_source": "Drowning in Water",
+      "water_relevance": "drowning",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "DOC-20260831-WA0001..pdf",
+          "pages": [
+            297
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "mnc-2018-F021",
+      "mine_id": "mnc-birmitrapur-limestone-dolomite-mine-439f0e92",
+      "mine_name": "BIRMITRAPUR LIMESTONE & DOLOMITE MINE",
+      "mine_category": "metal_non_coal",
+      "state": "Orissa",
+      "district": "Sundergarh",
+      "date_text": "17.06.18",
+      "year": 2018,
+      "cause_in_source": "Wheeled Trackless(Truck,Tanker,etc.)",
+      "water_relevance": "water_keyword",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "DOC-20260831-WA0001..pdf",
+          "pages": [
+            160
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "mnc-2017-F034",
+      "mine_id": "mnc-codli-iron-ore-mine-63751bf9",
+      "mine_name": "CODLI IRON/ORE MINE",
+      "mine_category": "metal_non_coal",
+      "state": "Goa",
+      "district": "South Goa",
+      "date_text": "02.12.17",
+      "year": 2017,
+      "cause_in_source": "Fall of Person from Height/into Depth",
+      "water_relevance": "water_keyword",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "DOC-20260831-WA0001..pdf",
+          "pages": [
+            125
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "mnc-2018-F020",
+      "mine_id": "mnc-ektarwa-stone-mine-no-54-p-c49210fa",
+      "mine_name": "EKTARWA STONE MINE (NO. 54/P)",
+      "mine_category": "metal_non_coal",
+      "state": "Jharkhand",
+      "district": "Koderma",
+      "date_text": "03.02.18",
+      "year": 2018,
+      "cause_in_source": "Wheeled Trackless(Truck,Tanker,etc.)",
+      "water_relevance": "water_keyword",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "DOC-20260831-WA0001..pdf",
+          "pages": [
+            159,
+            160
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "mnc-2019-F044",
+      "mine_id": "mnc-injepalli-limestone-mine-6e9b9027",
+      "mine_name": "INJEPALLI LIMESTONE MINE",
+      "mine_category": "metal_non_coal",
+      "state": "Karnataka",
+      "district": "Gulbarga",
+      "date_text": "18.02.19",
+      "year": 2019,
+      "cause_in_source": "Drowning in Water",
+      "water_relevance": "drowning",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "DOC-20260831-WA0001..pdf",
+          "pages": [
+            214,
+            215
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "mnc-2017-F029",
+      "mine_id": "mnc-itagi-limestone-mine-c2ad78ad",
+      "mine_name": "ITAGI LIMESTONE MINE",
+      "mine_category": "metal_non_coal",
+      "state": "Karnataka",
+      "district": "Kalaburagi(Formely-GULBERGA)",
+      "date_text": "11.10.17",
+      "year": 2017,
+      "cause_in_source": "Energized Machines",
+      "water_relevance": "water_keyword",
+      "persons_killed": 2,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "DOC-20260831-WA0001..pdf",
+          "pages": [
+            122
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "mnc-2022-F020",
+      "mine_id": "mnc-jamdiha-stone-quarry-cbbb569a",
+      "mine_name": "JAMDIHA STONE QUARRY",
+      "mine_category": "metal_non_coal",
+      "state": "Jharkhand",
+      "district": "Koderma",
+      "date_text": "27.11.22",
+      "year": 2022,
+      "cause_in_source": "Wheeled Trackless(Truck,Tanker,etc.)",
+      "water_relevance": "water_keyword",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "DOC-20260831-WA0001..pdf",
+          "pages": [
+            331,
+            332
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "mnc-2017-F021",
+      "mine_id": "mnc-masaro-ki-obri-serpentine-ff9a3260",
+      "mine_name": "MASARO KI OBRI SERPENTINE",
+      "mine_category": "metal_non_coal",
+      "state": "Rajasthan",
+      "district": "Udaipur",
+      "date_text": "26.07.17",
+      "year": 2017,
+      "cause_in_source": "Loading Machines",
+      "water_relevance": "water_keyword",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "DOC-20260831-WA0001..pdf",
+          "pages": [
+            117
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "mnc-MAJ-035",
+      "mine_id": "mnc-pattabhirama-margin-mica-9bd1b320",
+      "mine_name": "Pattabhirama & Margin Mica",
+      "mine_category": "metal_non_coal",
+      "state": null,
+      "district": null,
+      "date_text": "06-12-46",
+      "year": 1946,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 8,
+      "sections": [
+        "major_accident_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "DOC-20260831-WA0001..pdf",
+          "pages": [
+            346
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "mnc-2018-F026",
+      "mine_id": "mnc-peddapuram-granite-mine-e4ddd7f9",
+      "mine_name": "PEDDAPURAM GRANITE MINE",
+      "mine_category": "metal_non_coal",
+      "state": "Telangana",
+      "district": "Warangal Rural",
+      "date_text": "03.08.18",
+      "year": 2018,
+      "cause_in_source": "Loading Machines",
+      "water_relevance": "water_keyword",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "DOC-20260831-WA0001..pdf",
+          "pages": [
+            162
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "mnc-2019-F045",
+      "mine_id": "mnc-purnadih-nawada-stone-mine-5c33bb18",
+      "mine_name": "PURNADIH NAWADA STONE MINE",
+      "mine_category": "metal_non_coal",
+      "state": "Jharkhand",
+      "district": "Koderma",
+      "date_text": "09.11.19",
+      "year": 2019,
+      "cause_in_source": "Drowning in Water",
+      "water_relevance": "drowning",
+      "persons_killed": 3,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "DOC-20260831-WA0001..pdf",
+          "pages": [
+            215
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "mnc-2020-F013",
+      "mine_id": "mnc-purnadih-nawada-stone-mine-5c33bb18",
+      "mine_name": "PURNADIH NAWADA STONE MINE",
+      "mine_category": "metal_non_coal",
+      "state": "Jharkhand",
+      "district": "Koderma",
+      "date_text": "25.08.20",
+      "year": 2020,
+      "cause_in_source": "Dumpers",
+      "water_relevance": "water_keyword",
+      "persons_killed": 2,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "DOC-20260831-WA0001..pdf",
+          "pages": [
+            241,
+            242
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "mnc-MAJ-083",
+      "mine_id": "mnc-rajpura-dariba-galena-sphal-d47dffdb",
+      "mine_name": "Rajpura Dariba Galena & Sphal.",
+      "mine_category": "metal_non_coal",
+      "state": null,
+      "district": null,
+      "date_text": "28/08/94",
+      "year": 1994,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 13,
+      "sections": [
+        "major_accident_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "DOC-20260831-WA0001..pdf",
+          "pages": [
+            347
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "mnc-2022-F039",
+      "mine_id": "mnc-rajpura-dariba-lead-zinc-mine-89ad32ca",
+      "mine_name": "RAJPURA DARIBA LEAD & ZINC MINE",
+      "mine_category": "metal_non_coal",
+      "state": "Rajasthan",
+      "district": "Rajsamand",
+      "date_text": "11.03.22",
+      "year": 2022,
+      "cause_in_source": "Drowning in Water",
+      "water_relevance": "drowning",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "DOC-20260831-WA0001..pdf",
+          "pages": [
+            343,
+            344
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "mnc-2021-F015",
+      "mine_id": "mnc-satalkheri-limestone-mine-9f04e2da",
+      "mine_name": "SATALKHERI LIMESTONE MINE",
+      "mine_category": "metal_non_coal",
+      "state": "Rajasthan",
+      "district": "Kota",
+      "date_text": "14.09.21",
+      "year": 2021,
+      "cause_in_source": "Wheeled Trackless(Truck,Tanker,etc.)",
+      "water_relevance": "water_keyword",
+      "persons_killed": 1,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "DOC-20260831-WA0001..pdf",
+          "pages": [
+            286
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "mnc-MAJ-012",
+      "mine_id": "mnc-tadaiya-mica-81601532",
+      "mine_name": "Tadaiya Mica",
+      "mine_category": "metal_non_coal",
+      "state": null,
+      "district": null,
+      "date_text": "05-11-14",
+      "year": 1914,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 5,
+      "sections": [
+        "major_accident_table"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "DOC-20260831-WA0001..pdf",
+          "pages": [
+            345
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "mnc-2016-F035",
+      "mine_id": "mnc-turamdih-uranium-project-a72cbb89",
+      "mine_name": "TURAMDIH URANIUM PROJECT",
+      "mine_category": "metal_non_coal",
+      "state": "Jharkhand",
+      "district": "West Singbhum",
+      "date_text": "28.05.16",
+      "year": 2016,
+      "cause_in_source": "Irruption of Water",
+      "water_relevance": "irruption",
+      "persons_killed": 3,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "DOC-20260831-WA0001..pdf",
+          "pages": [
+            81
+          ]
+        }
+      ]
+    },
+    {
+      "incident_id": "mnc-2020-F027",
+      "mine_id": "mnc-work-over-mine-e2605c87",
+      "mine_name": "WORK OVER MINE",
+      "mine_category": "metal_non_coal",
+      "state": "Assam",
+      "district": "Tinsukia",
+      "date_text": "09.06.20",
+      "year": 2020,
+      "cause_in_source": "Well Blowout (With Fire)",
+      "water_relevance": "water_keyword",
+      "persons_killed": 2,
+      "sections": [
+        "fatal_accident_summary"
+      ],
+      "source_pages": [
+        {
+          "source_filename": "DOC-20260831-WA0001..pdf",
+          "pages": [
+            250
+          ]
+        }
+      ]
+    }
+  ],
+  "record_merges": [
+    {
+      "kept": "mnc-MAJ-033",
+      "merged_source": "S-mnc-COI-01",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "mnc-MAJ-041",
+      "merged_source": "S-mnc-COI-02a",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "mnc-MAJ-042",
+      "merged_source": "S-mnc-COI-02b",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "mnc-2017-F023",
+      "merged_source": "S-mnc-MAJ-100",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "mnc-2017-F003",
+      "merged_source": "S-mnc-MAJ-101",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "mnc-2019-F031",
+      "merged_source": "S-mnc-MAJ-102",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "mnc-2020-F005",
+      "merged_source": "S-mnc-MAJ-103",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "mnc-2021-F023",
+      "merged_source": "S-mnc-MAJ-104",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "mnc-2022-F003",
+      "merged_source": "S-mnc-MAJ-105",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-021",
+      "merged_source": "S-coal-COI-01",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-022",
+      "merged_source": "S-coal-COI-02",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-023",
+      "merged_source": "S-coal-COI-03",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-027",
+      "merged_source": "S-coal-COI-04",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-028",
+      "merged_source": "S-coal-COI-05",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-029",
+      "merged_source": "S-coal-COI-06",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-031",
+      "merged_source": "S-coal-COI-07",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-035",
+      "merged_source": "S-coal-COI-08",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-047",
+      "merged_source": "S-coal-COI-09",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-051",
+      "merged_source": "S-coal-COI-10",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-063",
+      "merged_source": "S-coal-COI-12",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-065",
+      "merged_source": "S-coal-COI-13",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-066",
+      "merged_source": "S-coal-COI-14",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-074",
+      "merged_source": "S-coal-COI-15",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-082",
+      "merged_source": "S-coal-COI-16",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-083",
+      "merged_source": "S-coal-COI-17",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-084",
+      "merged_source": "S-coal-COI-18",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-087",
+      "merged_source": "S-coal-COI-19",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-117",
+      "merged_source": "S-coal-COI-20",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-143",
+      "merged_source": "S-coal-COI-21",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-151",
+      "merged_source": "S-coal-COI-22",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-157",
+      "merged_source": "S-coal-COI-23",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-159",
+      "merged_source": "S-coal-COI-24",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-167",
+      "merged_source": "S-coal-COI-25",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-168",
+      "merged_source": "S-coal-COI-26",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-169",
+      "merged_source": "S-coal-COI-27",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-191",
+      "merged_source": "S-coal-COI-28",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-204",
+      "merged_source": "S-coal-COI-29",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-215",
+      "merged_source": "S-coal-COI-30",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-216",
+      "merged_source": "S-coal-COI-31",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-217",
+      "merged_source": "S-coal-COI-32",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-219",
+      "merged_source": "S-coal-COI-33",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-221",
+      "merged_source": "S-coal-COI-34",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-222",
+      "merged_source": "S-coal-COI-35",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-226",
+      "merged_source": "S-coal-COI-36",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-231",
+      "merged_source": "S-coal-COI-37",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-232",
+      "merged_source": "S-coal-COI-38",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-233",
+      "merged_source": "S-coal-COI-39",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-245",
+      "merged_source": "S-coal-COI-40",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-249",
+      "merged_source": "S-coal-COI-41",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-252",
+      "merged_source": "S-coal-COI-42a",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-253",
+      "merged_source": "S-coal-COI-42d",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-263",
+      "merged_source": "S-coal-COI-43",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-268",
+      "merged_source": "S-coal-COI-44",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-269",
+      "merged_source": "S-coal-COI-45",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-271",
+      "merged_source": "S-coal-COI-46",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-272",
+      "merged_source": "S-coal-COI-47",
+      "basis": "same category, same date, matching mine name"
+    },
+    {
+      "kept": "coal-MAJ-277",
+      "merged_source": "S-coal-COI-48",
+      "basis": "same category, same date, matching mine name"
+    }
+  ],
+  "aliases_applied": [
+    {
+      "category": "metal_non_coal",
+      "variant": "PURNADIH NAVADA STONE MINE",
+      "canonical_key": "PURNADIH NAWADA STONE MINE",
+      "incident_id": "mnc-2017-F016"
+    },
+    {
+      "category": "coal",
+      "variant": "Burra Dhemo",
+      "canonical_key": "BURRADHEMO",
+      "incident_id": "coal-MAJ-060"
+    },
+    {
+      "category": "coal",
+      "variant": "Central Sounda",
+      "canonical_key": "CENTRAL SAUNDA",
+      "incident_id": "coal-MAJ-271"
+    }
+  ],
+  "likely_duplicates_not_merged": [
+    {
+      "category": "metal_non_coal",
+      "reason": "similar spelling (similarity 92)",
+      "mine_a": {
+        "mine_id": "mnc-jhanjhar-marble-mine-m-l-77-09-daabae28",
+        "name": "JHANJHAR MARBLE MINE (M.L. 77/09)",
+        "state": "Rajasthan",
+        "district": "Rajsamand"
+      },
+      "mine_b": {
+        "mine_id": "mnc-jhanjhar-marble-mine-ml-87-97-8b97e584",
+        "name": "JHANJHAR MARBLE MINE(ML 87/97)",
+        "state": "Rajasthan",
+        "district": "Rajsamand"
+      }
+    },
+    {
+      "category": "metal_non_coal",
+      "reason": "similar spelling (similarity 93)",
+      "mine_a": {
+        "mine_id": "mnc-rewat-dungri-range-marble-mine-l-n-23-e6d58d43",
+        "name": "REWAT DUNGRI RANGE MARBLE MINE(L.N.23)",
+        "state": "Rajasthan",
+        "district": "Nagaur"
+      },
+      "mine_b": {
+        "mine_id": "mnc-rewat-dungri-range-marble-mine-no-29-c824e6af",
+        "name": "REWAT DUNGRI RANGE MARBLE MINE NO.29",
+        "state": "Rajasthan",
+        "district": "Nagaur"
+      }
+    },
+    {
+      "category": "metal_non_coal",
+      "reason": "similar spelling (similarity 93)",
+      "mine_a": {
+        "mine_id": "mnc-rewat-dungri-range-marble-mine-l-n-23-e6d58d43",
+        "name": "REWAT DUNGRI RANGE MARBLE MINE(L.N.23)",
+        "state": "Rajasthan",
+        "district": "Nagaur"
+      },
+      "mine_b": {
+        "mine_id": "mnc-rewat-dungri-range-marble-mine-no-26-4827311d",
+        "name": "REWAT DUNGRI RANGE MARBLE MINE NO.26",
+        "state": "Rajasthan",
+        "district": "Nagaur"
+      }
+    },
+    {
+      "category": "metal_non_coal",
+      "reason": "identical name, different or undocumented location",
+      "mine_a": {
+        "mine_id": "mnc-rajpura-dariba-galena-sphal-a4f84e44",
+        "name": "RAJPURA DARIBA GALENA & SPHAL",
+        "state": "Rajasthan",
+        "district": "Rajsamand"
+      },
+      "mine_b": {
+        "mine_id": "mnc-rajpura-dariba-galena-sphal-d47dffdb",
+        "name": "Rajpura Dariba Galena & Sphal.",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "metal_non_coal",
+      "reason": "similar spelling (similarity 94)",
+      "mine_a": {
+        "mine_id": "mnc-karadikolla-45-iron-ore-mine-3e0134be",
+        "name": "KARADIKOLLA(45) IRON ORE MINE",
+        "state": "Karnataka",
+        "district": "Bellary"
+      },
+      "mine_b": {
+        "mine_id": "mnc-karadikolla-iron-ore-mine-26e45b6d",
+        "name": "KARADIKOLLA IRON ORE MINE",
+        "state": "Karnataka",
+        "district": "Bellary"
+      }
+    },
+    {
+      "category": "metal_non_coal",
+      "reason": "similar spelling (similarity 98)",
+      "mine_a": {
+        "mine_id": "mnc-pipal-jori-stone-mine-32edb9d5",
+        "name": "PIPAL JORI STONE MINE",
+        "state": "Jharkhand",
+        "district": "Pakur"
+      },
+      "mine_b": {
+        "mine_id": "mnc-pipaljori-stone-mine-48d8a08b",
+        "name": "PIPALJORI STONE MINE",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "metal_non_coal",
+      "reason": "similar spelling (similarity 93)",
+      "mine_a": {
+        "mine_id": "mnc-hutti-gold-mine-df3d07f4",
+        "name": "HUTTI GOLD MINE",
+        "state": "Karnataka",
+        "district": "Raichur"
+      },
+      "mine_b": {
+        "mine_id": "mnc-uti-gold-mine-195eeb60",
+        "name": "UTI GOLD MINE",
+        "state": "Karnataka",
+        "district": "Raichur"
+      }
+    },
+    {
+      "category": "metal_non_coal",
+      "reason": "similar spelling (similarity 98)",
+      "mine_a": {
+        "mine_id": "mnc-pokarna-granite-mine-ii-99afe094",
+        "name": "POKARNA GRANITE MINE II",
+        "state": "Andhra Pradesh",
+        "district": "Prakasham"
+      },
+      "mine_b": {
+        "mine_id": "mnc-pokarna-granite-mine-i-a0b88553",
+        "name": "POKARNA GRANITE MINE-I",
+        "state": "Andhra Pradesh",
+        "district": "Prakasham"
+      }
+    },
+    {
+      "category": "metal_non_coal",
+      "reason": "similar spelling (similarity 97)",
+      "mine_a": {
+        "mine_id": "mnc-rewat-dungri-range-marble-mine-no-29-c824e6af",
+        "name": "REWAT DUNGRI RANGE MARBLE MINE NO.29",
+        "state": "Rajasthan",
+        "district": "Nagaur"
+      },
+      "mine_b": {
+        "mine_id": "mnc-rewat-dungri-range-marble-mine-no-26-4827311d",
+        "name": "REWAT DUNGRI RANGE MARBLE MINE NO.26",
+        "state": "Rajasthan",
+        "district": "Nagaur"
+      }
+    },
+    {
+      "category": "metal_non_coal",
+      "reason": "similar spelling (similarity 91)",
+      "mine_a": {
+        "mine_id": "mnc-chirki-mica-1ea6b710",
+        "name": "Chirki Mica",
+        "state": null,
+        "district": null
+      },
+      "mine_b": {
+        "mine_id": "mnc-charki-mica-e14c953e",
+        "name": "Charki Mica",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "identical name, different or undocumented location",
+      "mine_a": {
+        "mine_id": "coal-churcha-05d08a9a",
+        "name": "CHURCHA",
+        "state": "Chhattisgarh",
+        "district": "Korea"
+      },
+      "mine_b": {
+        "mine_id": "coal-churcha-652d3739",
+        "name": "Churcha",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 95)",
+      "mine_a": {
+        "mine_id": "coal-ravindra-khani-no-5-20cf4eb7",
+        "name": "RAVINDRA KHANI NO.5",
+        "state": "Telangana",
+        "district": "Adilabad"
+      },
+      "mine_b": {
+        "mine_id": "coal-ravindra-khani-no-7-d06c72ce",
+        "name": "RAVINDRA KHANI NO.7",
+        "state": "Telangana",
+        "district": "Adilabad"
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 95)",
+      "mine_a": {
+        "mine_id": "coal-ravindra-khani-no-5-20cf4eb7",
+        "name": "RAVINDRA KHANI NO.5",
+        "state": "Telangana",
+        "district": "Adilabad"
+      },
+      "mine_b": {
+        "mine_id": "coal-ravindra-khani-no-6-b242efef",
+        "name": "RAVINDRA KHANI NO.6",
+        "state": "Telangana",
+        "district": "Adilabad"
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 95)",
+      "mine_a": {
+        "mine_id": "coal-ravindra-khani-no-5-20cf4eb7",
+        "name": "RAVINDRA KHANI NO.5",
+        "state": "Telangana",
+        "district": "Adilabad"
+      },
+      "mine_b": {
+        "mine_id": "coal-ravindra-khani-no-8-353dc55e",
+        "name": "RAVINDRA KHANI NO.8",
+        "state": "Telangana",
+        "district": "Adilabad"
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 92)",
+      "mine_a": {
+        "mine_id": "coal-ravindra-khani-no-5-20cf4eb7",
+        "name": "RAVINDRA KHANI NO.5",
+        "state": "Telangana",
+        "district": "Adilabad"
+      },
+      "mine_b": {
+        "mine_id": "coal-ravindra-khani-no-1a-df9cbc37",
+        "name": "RAVINDRA KHANI NO.1A",
+        "state": "Telangana",
+        "district": "Adilabad"
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 95)",
+      "mine_a": {
+        "mine_id": "coal-ravindra-khani-no-7-d06c72ce",
+        "name": "RAVINDRA KHANI NO.7",
+        "state": "Telangana",
+        "district": "Adilabad"
+      },
+      "mine_b": {
+        "mine_id": "coal-ravindra-khani-no-6-b242efef",
+        "name": "RAVINDRA KHANI NO.6",
+        "state": "Telangana",
+        "district": "Adilabad"
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 95)",
+      "mine_a": {
+        "mine_id": "coal-ravindra-khani-no-7-d06c72ce",
+        "name": "RAVINDRA KHANI NO.7",
+        "state": "Telangana",
+        "district": "Adilabad"
+      },
+      "mine_b": {
+        "mine_id": "coal-ravindra-khani-no-8-353dc55e",
+        "name": "RAVINDRA KHANI NO.8",
+        "state": "Telangana",
+        "district": "Adilabad"
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 92)",
+      "mine_a": {
+        "mine_id": "coal-ravindra-khani-no-7-d06c72ce",
+        "name": "RAVINDRA KHANI NO.7",
+        "state": "Telangana",
+        "district": "Adilabad"
+      },
+      "mine_b": {
+        "mine_id": "coal-ravindra-khani-no-1a-df9cbc37",
+        "name": "RAVINDRA KHANI NO.1A",
+        "state": "Telangana",
+        "district": "Adilabad"
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 90)",
+      "mine_a": {
+        "mine_id": "coal-west-bokaro-o-c-quarry-a-b-87457582",
+        "name": "WEST BOKARO O/C (QUARRY A & B )",
+        "state": "Jharkhand",
+        "district": "Ramgarh"
+      },
+      "mine_b": {
+        "mine_id": "coal-west-bokaro-o-c-quarry-se-d9bf3acd",
+        "name": "WEST BOKARO O/C(QUARRY SE)",
+        "state": "Jharkhand",
+        "district": "Ramgarh"
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 95)",
+      "mine_a": {
+        "mine_id": "coal-ravindra-khani-no-6-b242efef",
+        "name": "RAVINDRA KHANI NO.6",
+        "state": "Telangana",
+        "district": "Adilabad"
+      },
+      "mine_b": {
+        "mine_id": "coal-ravindra-khani-no-8-353dc55e",
+        "name": "RAVINDRA KHANI NO.8",
+        "state": "Telangana",
+        "district": "Adilabad"
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 92)",
+      "mine_a": {
+        "mine_id": "coal-ravindra-khani-no-6-b242efef",
+        "name": "RAVINDRA KHANI NO.6",
+        "state": "Telangana",
+        "district": "Adilabad"
+      },
+      "mine_b": {
+        "mine_id": "coal-ravindra-khani-no-1a-df9cbc37",
+        "name": "RAVINDRA KHANI NO.1A",
+        "state": "Telangana",
+        "district": "Adilabad"
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "identical name, different or undocumented location",
+      "mine_a": {
+        "mine_id": "coal-jamadoba-316512b7",
+        "name": "JAMADOBA",
+        "state": "Jharkhand",
+        "district": "Dhanbad"
+      },
+      "mine_b": {
+        "mine_id": "coal-jamadoba-e580981d",
+        "name": "Jamadoba",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 91)",
+      "mine_a": {
+        "mine_id": "coal-kakatiya-khani-no-5-incline-646be1a9",
+        "name": "KAKATIYA KHANI NO.5 INCLINE",
+        "state": "Telangana",
+        "district": "Warangal"
+      },
+      "mine_b": {
+        "mine_id": "coal-kakatiya-khani-no-1-1a-incline-81c6f2ae",
+        "name": "KAKATIYA KHANI NO 1 &1A INCLINE",
+        "state": "Telangana",
+        "district": "Warangal"
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 96)",
+      "mine_a": {
+        "mine_id": "coal-kakatiya-khani-no-5-incline-646be1a9",
+        "name": "KAKATIYA KHANI NO.5 INCLINE",
+        "state": "Telangana",
+        "district": "Warangal"
+      },
+      "mine_b": {
+        "mine_id": "coal-kakatiya-khani-no-6-incline-3755cc0d",
+        "name": "KAKATIYA KHANI NO.6 INCLINE",
+        "state": "Telangana",
+        "district": "Warangal"
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "identical name, different or undocumented location",
+      "mine_a": {
+        "mine_id": "coal-silewara-2bead5cd",
+        "name": "SILEWARA",
+        "state": "Maharashtra",
+        "district": "Nagpur"
+      },
+      "mine_b": {
+        "mine_id": "coal-silewara-1844d098",
+        "name": "Silewara",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "identical name, different or undocumented location",
+      "mine_a": {
+        "mine_id": "coal-gazlitand-440f07d5",
+        "name": "GAZLITAND",
+        "state": "Jharkhand",
+        "district": "Dhanbad"
+      },
+      "mine_b": {
+        "mine_id": "coal-gazlitand-85b6636f",
+        "name": "Gazlitand",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "identical name, different or undocumented location",
+      "mine_a": {
+        "mine_id": "coal-shyamsundarpur-95cccf8f",
+        "name": "SHYAMSUNDARPUR",
+        "state": "West Bengal",
+        "district": "Burdwan"
+      },
+      "mine_b": {
+        "mine_id": "coal-shyamsundarpur-70c4690f",
+        "name": "Shyamsundarpur",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "identical name, different or undocumented location",
+      "mine_a": {
+        "mine_id": "coal-bankola-4336211e",
+        "name": "BANKOLA",
+        "state": "West Bengal",
+        "district": "Burdwan"
+      },
+      "mine_b": {
+        "mine_id": "coal-bankola-1af5ca97",
+        "name": "Bankola",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "identical name, different or undocumented location",
+      "mine_a": {
+        "mine_id": "coal-durgapur-rayatwari-41e884f1",
+        "name": "DURGAPUR RAYATWARI",
+        "state": "Maharashtra",
+        "district": "Chandrapur"
+      },
+      "mine_b": {
+        "mine_id": "coal-durgapur-rayatwari-1c189683",
+        "name": "Durgapur Rayatwari",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "identical name, different or undocumented location",
+      "mine_a": {
+        "mine_id": "coal-dobary-3474ddff",
+        "name": "DOBARY",
+        "state": "Jharkhand",
+        "district": "Dhanbad"
+      },
+      "mine_b": {
+        "mine_id": "coal-dobary-49b15620",
+        "name": "Dobary",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 92)",
+      "mine_a": {
+        "mine_id": "coal-neyveli-no-2-054683f2",
+        "name": "NEYVELI NO 2",
+        "state": "Tamil Nadu",
+        "district": "Cuddalore"
+      },
+      "mine_b": {
+        "mine_id": "coal-neyveli-no-1-6c4b82cc",
+        "name": "NEYVELI NO 1",
+        "state": "Tamil Nadu",
+        "district": "Cuddalore"
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "identical name, different or undocumented location",
+      "mine_a": {
+        "mine_id": "coal-chasnalla-2bdcb189",
+        "name": "CHASNALLA",
+        "state": "Jharkhand",
+        "district": "Dhanbad"
+      },
+      "mine_b": {
+        "mine_id": "coal-chasnalla-3bc2595e",
+        "name": "Chasnalla",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "identical name, different or undocumented location",
+      "mine_a": {
+        "mine_id": "coal-bejdih-3382d851",
+        "name": "BEJDIH",
+        "state": "West Bengal",
+        "district": "Burdwan"
+      },
+      "mine_b": {
+        "mine_id": "coal-bejdih-1089200a",
+        "name": "Bejdih",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "identical name, different or undocumented location",
+      "mine_a": {
+        "mine_id": "coal-phularitand-6474403a",
+        "name": "PHULARITAND",
+        "state": "Jharkhand",
+        "district": "Dhanbad"
+      },
+      "mine_b": {
+        "mine_id": "coal-phularitand-a6263170",
+        "name": "phularitand",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 97)",
+      "mine_a": {
+        "mine_id": "coal-ramagundam-oc-iii-4016240d",
+        "name": "RAMAGUNDAM OC-III",
+        "state": "Telangana",
+        "district": "Karimnagar"
+      },
+      "mine_b": {
+        "mine_id": "coal-ramagundam-oc-ii-a8291208",
+        "name": "RAMAGUNDAM OC-II",
+        "state": "Telangana",
+        "district": "Karimnagar"
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 94)",
+      "mine_a": {
+        "mine_id": "coal-ramagundam-oc-iii-4016240d",
+        "name": "RAMAGUNDAM OC-III",
+        "state": "Telangana",
+        "district": "Karimnagar"
+      },
+      "mine_b": {
+        "mine_id": "coal-ramagundam-oc-i-96e528d0",
+        "name": "RAMAGUNDAM OC-I",
+        "state": "Telangana",
+        "district": "Karimnagar"
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 97)",
+      "mine_a": {
+        "mine_id": "coal-ramagundam-oc-ii-a8291208",
+        "name": "RAMAGUNDAM OC-II",
+        "state": "Telangana",
+        "district": "Karimnagar"
+      },
+      "mine_b": {
+        "mine_id": "coal-ramagundam-oc-i-96e528d0",
+        "name": "RAMAGUNDAM OC-I",
+        "state": "Telangana",
+        "district": "Karimnagar"
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 94)",
+      "mine_a": {
+        "mine_id": "coal-bhurkunda-mine-a-c48bcb63",
+        "name": "BHURKUNDA MINE-A",
+        "state": "Jharkhand",
+        "district": "Hazaribagh"
+      },
+      "mine_b": {
+        "mine_id": "coal-bhurkunda-mine-b-6682e19c",
+        "name": "BHURKUNDA MINE-B",
+        "state": "Jharkhand",
+        "district": "Ramgarh"
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 95)",
+      "mine_a": {
+        "mine_id": "coal-godavari-khani-no-5-b6ab344e",
+        "name": "GODAVARI KHANI NO.5",
+        "state": "Telangana",
+        "district": "Karimnagar"
+      },
+      "mine_b": {
+        "mine_id": "coal-godavari-khani-no-9-5dadda88",
+        "name": "Godavari Khani No.9",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 92)",
+      "mine_a": {
+        "mine_id": "coal-godavari-khani-no-5-b6ab344e",
+        "name": "GODAVARI KHANI NO.5",
+        "state": "Telangana",
+        "district": "Karimnagar"
+      },
+      "mine_b": {
+        "mine_id": "coal-godavari-khani-no-ix-5959d9fa",
+        "name": "Godavari Khani No.IX",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 92)",
+      "mine_a": {
+        "mine_id": "coal-godavari-khani-no-5-b6ab344e",
+        "name": "GODAVARI KHANI NO.5",
+        "state": "Telangana",
+        "district": "Karimnagar"
+      },
+      "mine_b": {
+        "mine_id": "coal-godavari-khani-no-8a-c1599c0c",
+        "name": "Godavari Khani No. 8A",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 92)",
+      "mine_a": {
+        "mine_id": "coal-ravindra-khani-no-8-353dc55e",
+        "name": "RAVINDRA KHANI NO.8",
+        "state": "Telangana",
+        "district": "Adilabad"
+      },
+      "mine_b": {
+        "mine_id": "coal-ravindra-khani-no-1a-df9cbc37",
+        "name": "RAVINDRA KHANI NO.1A",
+        "state": "Telangana",
+        "district": "Adilabad"
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "identical name, different or undocumented location",
+      "mine_a": {
+        "mine_id": "coal-venkatesh-khani-no-7-91faca55",
+        "name": "VENKATESH KHANI NO.7",
+        "state": "Telangana",
+        "district": "Khammam"
+      },
+      "mine_b": {
+        "mine_id": "coal-venkatesh-khani-no-7-1867f950",
+        "name": "Venkatesh Khani No. 7",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "identical name, different or undocumented location",
+      "mine_a": {
+        "mine_id": "coal-jagannath-8b46dbe6",
+        "name": "JAGANNATH",
+        "state": "Orissa",
+        "district": "Angul"
+      },
+      "mine_b": {
+        "mine_id": "coal-jagannath-87f10081",
+        "name": "Jagannath",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 91)",
+      "mine_a": {
+        "mine_id": "coal-kakatiya-khani-no-1-1a-incline-81c6f2ae",
+        "name": "KAKATIYA KHANI NO 1 &1A INCLINE",
+        "state": "Telangana",
+        "district": "Warangal"
+      },
+      "mine_b": {
+        "mine_id": "coal-kakatiya-khani-no-6-incline-3755cc0d",
+        "name": "KAKATIYA KHANI NO.6 INCLINE",
+        "state": "Telangana",
+        "district": "Warangal"
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "identical name, different or undocumented location",
+      "mine_a": {
+        "mine_id": "coal-mahakali-3e3dfde2",
+        "name": "MAHAKALI",
+        "state": "Maharashtra",
+        "district": "Chandrapur"
+      },
+      "mine_b": {
+        "mine_id": "coal-mahakali-2f4616e3",
+        "name": "Mahakali",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "identical name, different or undocumented location",
+      "mine_a": {
+        "mine_id": "coal-noonodih-jitpur-c4c85b1b",
+        "name": "NOONODIH JITPUR",
+        "state": "Jharkhand",
+        "district": "Dhanbad"
+      },
+      "mine_b": {
+        "mine_id": "coal-noonodih-jitpur-dbdbf747",
+        "name": "Noonodih Jitpur",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 96)",
+      "mine_a": {
+        "mine_id": "coal-gare-palma-iv-1-coal-mine-a766e38d",
+        "name": "GARE PALMA IV/1 COAL MINE",
+        "state": "Chhattisgarh",
+        "district": "Raigarh"
+      },
+      "mine_b": {
+        "mine_id": "coal-gare-palma-iv-4-coal-mine-d4613e7c",
+        "name": "GARE PALMA IV/4 COAL MINE",
+        "state": "Chhattisgarh",
+        "district": "Raigarh"
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "identical name, different or undocumented location",
+      "mine_a": {
+        "mine_id": "coal-mudidih-e4bacdd7",
+        "name": "MUDIDIH",
+        "state": "Jharkhand",
+        "district": "Dhanbad"
+      },
+      "mine_b": {
+        "mine_id": "coal-mudidih-58397108",
+        "name": "Mudidih",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 93)",
+      "mine_a": {
+        "mine_id": "coal-parascole-west-424bcd13",
+        "name": "PARASCOLE WEST",
+        "state": "West Bengal",
+        "district": "Burdwan"
+      },
+      "mine_b": {
+        "mine_id": "coal-parascole-east-2f1c3b29",
+        "name": "PARASCOLE EAST",
+        "state": "West Bengal",
+        "district": "Burdwan"
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "identical name, different or undocumented location",
+      "mine_a": {
+        "mine_id": "coal-parascole-west-424bcd13",
+        "name": "PARASCOLE WEST",
+        "state": "West Bengal",
+        "district": "Burdwan"
+      },
+      "mine_b": {
+        "mine_id": "coal-parascole-west-18da7ba5",
+        "name": "Parascole (West)",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 93)",
+      "mine_a": {
+        "mine_id": "coal-parascole-east-2f1c3b29",
+        "name": "PARASCOLE EAST",
+        "state": "West Bengal",
+        "district": "Burdwan"
+      },
+      "mine_b": {
+        "mine_id": "coal-parascole-west-18da7ba5",
+        "name": "Parascole (West)",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 95)",
+      "mine_a": {
+        "mine_id": "coal-chapuikhas-505a68c9",
+        "name": "CHAPUIKHAS",
+        "state": "West Bengal",
+        "district": "Burdwan"
+      },
+      "mine_b": {
+        "mine_id": "coal-chapui-khas-c185a156",
+        "name": "Chapui Khas",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "identical name, different or undocumented location",
+      "mine_a": {
+        "mine_id": "coal-new-kenda-b387ceb2",
+        "name": "NEW KENDA",
+        "state": "West Bengal",
+        "district": "Burdwan"
+      },
+      "mine_b": {
+        "mine_id": "coal-new-kenda-5f2a1753",
+        "name": "New Kenda",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "identical name, different or undocumented location",
+      "mine_a": {
+        "mine_id": "coal-ena-8811f530",
+        "name": "ENA",
+        "state": "Jharkhand",
+        "district": "Dhanbad"
+      },
+      "mine_b": {
+        "mine_id": "coal-ena-fa415f33",
+        "name": "Ena",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "identical name, different or undocumented location",
+      "mine_a": {
+        "mine_id": "coal-sodepur-09c655f6",
+        "name": "SODEPUR",
+        "state": "West Bengal",
+        "district": "Burdwan"
+      },
+      "mine_b": {
+        "mine_id": "coal-sodepur-7f30138f",
+        "name": "Sodepur",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "identical name, different or undocumented location",
+      "mine_a": {
+        "mine_id": "coal-bhowra-south-e8e672e5",
+        "name": "BHOWRA(SOUTH)",
+        "state": "Jharkhand",
+        "district": "Dhanbad"
+      },
+      "mine_b": {
+        "mine_id": "coal-bhowra-south-06286110",
+        "name": "Bhowra South",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "identical name, different or undocumented location",
+      "mine_a": {
+        "mine_id": "coal-satgram-incline-97e6be0f",
+        "name": "SATGRAM INCLINE",
+        "state": "West Bengal",
+        "district": "Burdwan"
+      },
+      "mine_b": {
+        "mine_id": "coal-satgram-incline-d074423b",
+        "name": "Satgram Incline",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "identical name, different or undocumented location",
+      "mine_a": {
+        "mine_id": "coal-kalyan-khani-no-1-3f0c5ab0",
+        "name": "KALYAN KHANI NO.1",
+        "state": "Telangana",
+        "district": "Adilabad"
+      },
+      "mine_b": {
+        "mine_id": "coal-kalyan-khani-no-1-a89fd85e",
+        "name": "Kalyan Khani No.1",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 94)",
+      "mine_a": {
+        "mine_id": "coal-kalyan-khani-no-1-3f0c5ab0",
+        "name": "KALYAN KHANI NO.1",
+        "state": "Telangana",
+        "district": "Adilabad"
+      },
+      "mine_b": {
+        "mine_id": "coal-kalyan-khani-no-5-5aaed740",
+        "name": "Kalyan Khani No.5",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 91)",
+      "mine_a": {
+        "mine_id": "coal-kalyan-khani-no-1-3f0c5ab0",
+        "name": "KALYAN KHANI NO.1",
+        "state": "Telangana",
+        "district": "Adilabad"
+      },
+      "mine_b": {
+        "mine_id": "coal-kalyan-khani-no-ii-dcee63c1",
+        "name": "Kalyan Khani No. II",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "identical name, different or undocumented location",
+      "mine_a": {
+        "mine_id": "coal-jayant-39a8c832",
+        "name": "JAYANT",
+        "state": "Madhya Pradesh",
+        "district": "Singrauli"
+      },
+      "mine_b": {
+        "mine_id": "coal-jayant-a3272bfa",
+        "name": "Jayant",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 92)",
+      "mine_a": {
+        "mine_id": "coal-sodepur-no-9-10-pits-90488cac",
+        "name": "Sodepur No. 9 & 10 pits",
+        "state": null,
+        "district": null
+      },
+      "mine_b": {
+        "mine_id": "coal-sodepur-9-10-pits-fc343438",
+        "name": "Sodepur 9 & 10 Pits",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 91)",
+      "mine_a": {
+        "mine_id": "coal-sawang-bdc7d310",
+        "name": "Sawang",
+        "state": null,
+        "district": null
+      },
+      "mine_b": {
+        "mine_id": "coal-swang-5b5a2b70",
+        "name": "Swang",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 92)",
+      "mine_a": {
+        "mine_id": "coal-sodepur-9-10-pits-fc343438",
+        "name": "Sodepur 9 & 10 Pits",
+        "state": null,
+        "district": null
+      },
+      "mine_b": {
+        "mine_id": "coal-sodepur-9-10-11-pits-6903bb66",
+        "name": "Sodepur 9, 10 & 11 Pits",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 92)",
+      "mine_a": {
+        "mine_id": "coal-bhualbararee-ac1d278d",
+        "name": "Bhualbararee",
+        "state": null,
+        "district": null
+      },
+      "mine_b": {
+        "mine_id": "coal-bhulabararee-53794d72",
+        "name": "Bhulabararee",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 90)",
+      "mine_a": {
+        "mine_id": "coal-jhagrakhand-5d4b4a83",
+        "name": "Jhagrakhand",
+        "state": null,
+        "district": null
+      },
+      "mine_b": {
+        "mine_id": "coal-jharkhand-b7ac8e9b",
+        "name": "Jharkhand",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 94)",
+      "mine_a": {
+        "mine_id": "coal-kalyan-khani-no-1-a89fd85e",
+        "name": "Kalyan Khani No.1",
+        "state": null,
+        "district": null
+      },
+      "mine_b": {
+        "mine_id": "coal-kalyan-khani-no-5-5aaed740",
+        "name": "Kalyan Khani No.5",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 91)",
+      "mine_a": {
+        "mine_id": "coal-kalyan-khani-no-1-a89fd85e",
+        "name": "Kalyan Khani No.1",
+        "state": null,
+        "district": null
+      },
+      "mine_b": {
+        "mine_id": "coal-kalyan-khani-no-ii-dcee63c1",
+        "name": "Kalyan Khani No. II",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 91)",
+      "mine_a": {
+        "mine_id": "coal-kalyan-khani-no-5-5aaed740",
+        "name": "Kalyan Khani No.5",
+        "state": null,
+        "district": null
+      },
+      "mine_b": {
+        "mine_id": "coal-kalyan-khani-no-ii-dcee63c1",
+        "name": "Kalyan Khani No. II",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 92)",
+      "mine_a": {
+        "mine_id": "coal-godavari-khani-no-9-5dadda88",
+        "name": "Godavari Khani No.9",
+        "state": null,
+        "district": null
+      },
+      "mine_b": {
+        "mine_id": "coal-godavari-khani-no-ix-5959d9fa",
+        "name": "Godavari Khani No.IX",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 92)",
+      "mine_a": {
+        "mine_id": "coal-godavari-khani-no-9-5dadda88",
+        "name": "Godavari Khani No.9",
+        "state": null,
+        "district": null
+      },
+      "mine_b": {
+        "mine_id": "coal-godavari-khani-no-8a-c1599c0c",
+        "name": "Godavari Khani No. 8A",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 93)",
+      "mine_a": {
+        "mine_id": "coal-south-govindpur-ce384808",
+        "name": "South Govindpur",
+        "state": null,
+        "district": null
+      },
+      "mine_b": {
+        "mine_id": "coal-south-gobindpur-79fe6cce",
+        "name": "South Gobindpur",
+        "state": null,
+        "district": null
+      }
+    },
+    {
+      "category": "coal",
+      "reason": "similar spelling (similarity 90)",
+      "mine_a": {
+        "mine_id": "coal-godavari-khani-no-ix-5959d9fa",
+        "name": "Godavari Khani No.IX",
+        "state": null,
+        "district": null
+      },
+      "mine_b": {
+        "mine_id": "coal-godavari-khani-no-8a-c1599c0c",
+        "name": "Godavari Khani No. 8A",
+        "state": null,
+        "district": null
+      }
+    }
+  ],
+  "ambiguous_or_flagged_records": [
+    {
+      "source_id": "S-mnc-MAJ-001",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '02-02-01': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-002",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '11-04-02': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-003",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '26/09/04': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-004",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '29/12/06': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-005",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '24/01/07': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-006",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '10-02-08': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-007",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '06-12-10': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-008",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '26/04/11': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-009",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '04-06-12': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-010",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '21/10/13': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-011",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '24/07/14': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-012",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '05-11-14': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-013",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '12-08-16': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-014",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '13/05/19': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-015",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '28/01/20': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-016",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '13/09/20': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-017",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '18/09/20': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-018",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '19/02/23': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-019",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '20/02/23': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-020",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '01-03-27': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-021",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '26/05/27': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-022",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '10-09-27': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-023",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '12-10-27': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-024",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '16/05/29': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-025",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '06-01-31': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-026",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '14/09/31': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-027",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '12-04-32': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-028",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '24/08/36': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-029",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '26/02/37': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-030",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '22/12/38': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-031",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '05-10-40': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-032",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        345
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '15/07/43': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-033",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '07-11-45': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-034",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '13/05/46': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-035",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '06-12-46': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-036",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '21/01/49': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-037",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '08-07-50': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-038",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '14/06/51': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-039",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '11-10-51': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-040",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '02-11-51': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-041",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '19/04/52': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-042",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '30/06/52': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-043",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '01-05-53': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-044",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '21/06/54': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-045",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '30/11/54': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-046",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '23/12/54': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-047",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '27/05/55': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-048",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '21/04/56': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-049",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '18/08/56': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-050",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '22/01/57': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-051",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '29/09/57': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-052",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '19/02/58': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-053",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '12-05-59': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-054",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '14/05/59': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-055",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '26/06/61': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-056",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '24/03/62': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-057",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '01-06-63': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-058",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '13/08/63': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-059",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '16/02/64': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-060",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '13/10/64': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-061",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '06-02-66': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-062",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '02-08-66': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-063",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '25/12/66': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-064",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '06-06-68': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-065",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '19/11/69': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-066",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '14/10/70': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-067",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '29/01/71': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-068",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '20/06/72': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-069",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '22/08/78': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-070",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        346
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '10-05-80': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-071",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '17/08/80': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-072",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '08-09-83': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-073",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '04-04-84': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-074",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '30/05/84': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-075",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '22/02/86': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-076",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '15/11/88': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-077",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '14/07/89': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-078",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '30/05/90': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-079",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '22/06/91': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-080",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '11-07-93': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-081",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '25/10/93': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-082",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '09-07-94': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-083",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '28/08/94': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-084",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '16/02/95': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-085",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '08-11-96': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-086",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '17/04/99': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-087",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '21/04/01': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-088",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '02-06-02': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-089",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '18/11/02': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-090",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '11-03-06': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-091",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '12-09-06': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-092",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '10-07-07': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-093",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '12-05-08': day and month cannot be told apart and the century is inferred from the table order; only the year is used."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-094",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '25/02/10': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-095",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '26/03/10': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-096",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '24/04/10': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-097",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '27/08/10': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-098",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '23/07/13': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-099",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '26/11/14': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-100",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '31/01/17': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-101",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        347
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '27/05/17': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-102",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        348
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '13/03/19': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-103",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        348
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '28/02/20': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-104",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        348
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '08/05/21': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-MAJ-105",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        348
+      ],
+      "section": "major_accident_table",
+      "warnings": [
+        "Date '01/01/22': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-COI-01",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        349
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Parsed from a table flattened to one cell per line; verify against the page.",
+        "Date '07/11/45': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-COI-02a",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        349
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Parsed from a table flattened to one cell per line; verify against the page.",
+        "Date '19/04/52': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-COI-02b",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        349
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Parsed from a table flattened to one cell per line; verify against the page.",
+        "Date '30/06/52': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-COI-02c",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        349
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Parsed from a table flattened to one cell per line; verify against the page.",
+        "Date '19/08/52': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-COI-03a",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        349
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Parsed from a table flattened to one cell per line; verify against the page.",
+        "Date '10/01/83': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-mnc-COI-03b",
+      "source_filename": "DOC-20260831-WA0001..pdf",
+      "pages": [
+        349
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Parsed from a table flattened to one cell per line; verify against the page.",
+        "Date '16/01/83': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-01",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        307
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '07/08/13': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-02",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        307
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '08/08/13': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-03",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        307
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '22/10/13': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-04",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        307
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '04/02/16': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-05",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        307
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '20/02/16': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-06",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        307
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '20/07/16': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-07",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        307
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '18/11/18': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-08",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        307
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '24/11/19': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-09",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        307
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '04/01/23': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-10",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        307
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '14/04/23': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-11",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        307
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '18/01/25': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-12",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        307
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '09/04/28': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-13",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        307
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '20/12/28': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-14",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        307
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '09/04/29': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-15",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        308
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '14/10/30': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-16",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        308
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '29/06/35': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-17",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        308
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '24/07/35': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-18",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        308
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '30/01/36': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-19",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        308
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '18/12/36': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-20",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        308
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '19/03/46': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-21",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        308
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '15/05/53': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-22",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        308
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '08/01/54': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-23",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        308
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '10/12/54': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-24",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        308
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '05/02/55': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-25",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        308
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '26/09/56': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-26",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        308
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '19/02/58': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-27",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        308
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '20/02/58': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-28",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        309
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '28/05/65': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-29",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        309
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '18/03/73': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-30",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        309
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '08/08/75': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-31",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        309
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '18/11/75': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-32",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        309
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '27/12/75': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-33",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        309
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '05/04/76': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-34",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        309
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '16/09/76': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-35",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        309
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '04/10/76': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-36",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        309
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '22/01/79': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-37",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        309
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '24/06/81': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-38",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        309
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '16/07/82': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-39",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        309
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '14/09/83': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-40",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        310
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '13/11/89': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-41",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        310
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '25/01/94': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-42a",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        310
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '27/09/95': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-42b",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        310
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '26/09/95': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-42c",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        310
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '26/09/95': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-42d",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        310
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '27/09/95': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-43",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        310
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '02/02/01': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-44",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        310
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '16/06/03': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-45",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        310
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '17/10/03': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-46",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        310
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '15/06/05': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-47",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        310
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '06/09/06': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-48",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        310
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '06/05/10': century inferred from the table order."
+      ]
+    },
+    {
+      "source_id": "S-coal-COI-49",
+      "source_filename": "sanket0404_2024.pdf",
+      "pages": [
+        310
+      ],
+      "section": "court_of_inquiry_table",
+      "warnings": [
+        "Date '29/12/16': century inferred from the table order."
+      ]
+    }
+  ],
+  "field_completeness": {
+    "incidents_total": 1006,
+    "incidents_without_exact_date": 32,
+    "incidents_without_narrative": 384,
+    "incidents_without_findings_block": 396,
+    "incidents_without_casualty_count": 0,
+    "mines_total": 769,
+    "mines_without_state_or_district": 307,
+    "mines_without_operator": 307,
+    "mines_with_geology_summary": 0
+  },
+  "fields_absent_from_source": [
+    "Geological or hydrogeological description of any mine (strata, aquifers, faults, seam depth).",
+    "DGMS region/zone of an individual mine (regions appear only in aggregate statistical tables).",
+    "Water level, inflow rate or volume as a recorded field (quantities appear only inside narratives).",
+    "Preventive measures actually implemented after an accident, their dates and their effectiveness.",
+    "Present-day status of any mine, barrier, pump or other installation.",
+    "Narratives for accidents before 2016: the historic tables give only date, mine name, casualties and cause.",
+    "Mine-level details of serious (non-fatal) accidents and dangerous occurrences (only yearly counts are published).",
+    "State, district or owner for mines that appear only in the historic tables."
+  ],
+  "schema_validation_warnings": [],
+  "vector_index": {
+    "status": "up_to_date",
+    "backend": "onnx-minilm",
+    "total": 1616
+  },
+  "missing_categories": []
+}
