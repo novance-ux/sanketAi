@@ -12,6 +12,7 @@ import re
 import streamlit as st
 
 from .agent import SanketAgent
+from .chat import DocumentChat
 from .config import get_settings
 from .database import Database
 from .llm import data_flow_notice
@@ -51,13 +52,38 @@ h1, h2, h3 {letter-spacing: -0.01em;}
            font-size: .95rem; white-space: pre-wrap;}
 .sk-banner {border: 1px solid #c3c2b7; border-left: 4px solid #52514e; padding: .6rem .9rem; background: #f8f8f5;
             font-size: .9rem; border-radius: 3px; margin-bottom: .8rem;}
+/* floating chatbot */
+.st-key-sanket_fab {position: fixed; bottom: 22px; right: 22px; z-index: 1001; width: auto !important;}
+.st-key-sanket_fab button {border-radius: 999px; min-height: 48px; padding: 0 18px; background: #184f95;
+            color: #fff; border: none; box-shadow: 0 4px 14px rgba(0,0,0,.22);}
+.st-key-sanket_fab button:hover {background: #104281; color: #fff;}
+.st-key-sanket_chat_panel {position: fixed; bottom: 82px; right: 22px; width: min(440px, calc(100vw - 32px));
+            max-height: min(80vh, 760px); overflow-y: auto; z-index: 1000; background: #ffffff;
+            border: 1px solid #d9d8d2; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,.18);
+            padding: 12px 14px 8px 14px;}
+.st-key-sanket_chat_panel [data-testid="stChatMessage"] {padding: .45rem .6rem; border-radius: 10px;
+            margin-bottom: .35rem;}
+.st-key-sanket_chat_panel [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) {
+            flex-direction: row-reverse; background: #e8f0fb; margin-left: 14%; text-align: right;}
+.st-key-sanket_chat_panel [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]) {
+            background: #f6f6f3; margin-right: 4%;}
+.sk-draft {color: #6b6a65; background: #f6f6f3; border: 1px dashed #c3c2b7; border-radius: 6px;
+           padding: .5rem .7rem; font-size: .92rem;}
+@media (max-width: 640px) {
+  .st-key-sanket_chat_panel {left: 8px; right: 8px; width: auto; bottom: 76px; max-height: 82vh;}
+  .st-key-sanket_fab {bottom: 14px; right: 14px;}
+}
 </style>
 """
 
 
-def page_setup(title: str) -> None:
+def page_setup(title: str, *, floating_chat: bool = True) -> None:
     st.set_page_config(page_title=f"SANKET AI - {title}", layout="wide", initial_sidebar_state="expanded")
     st.markdown(_CSS, unsafe_allow_html=True)
+    if floating_chat:
+        from .chat_ui import render_floating_chat
+
+        render_floating_chat()
     with st.sidebar:
         st.markdown("**SANKET AI**")
         st.caption("Historical mine inundation intelligence and emergency decision support")
@@ -76,6 +102,11 @@ def page_setup(title: str) -> None:
 @st.cache_resource(show_spinner=False)
 def get_retriever() -> Retriever:
     return Retriever.from_settings(get_settings())
+
+
+@st.cache_resource(show_spinner=False)
+def get_chat() -> DocumentChat:
+    return DocumentChat.from_settings(get_settings())
 
 
 @st.cache_resource(show_spinner=False)

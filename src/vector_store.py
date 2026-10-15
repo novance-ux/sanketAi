@@ -1,4 +1,4 @@
-"""Local semantic index (Chroma + on-device MiniLM embeddings).
+﻿"""Local semantic index (Chroma + on-device MiniLM embeddings).
 
 The vector index is optional by design. It only re-ranks chunks that the structured
 database has already restricted to one mine, so if the embedding model cannot be loaded
@@ -14,7 +14,8 @@ from pathlib import Path
 
 log = logging.getLogger(__name__)
 
-COLLECTION = "sanket_chunks"
+COLLECTION = "sanket_chunks"  # incident records (one mine each)
+PAGE_COLLECTION = "sanket_pages"  # every text page of both volumes, for the document chat
 
 
 class VectorStoreUnavailable(RuntimeError):
@@ -22,9 +23,10 @@ class VectorStoreUnavailable(RuntimeError):
 
 
 class VectorStore:
-    def __init__(self, directory: Path, backend: str = "onnx-minilm"):
+    def __init__(self, directory: Path, backend: str = "onnx-minilm", collection: str = COLLECTION):
         self.directory = Path(directory)
         self.backend = backend
+        self.collection_name = collection
         self._collection = None
 
     @property
@@ -48,7 +50,7 @@ class VectorStore:
                 path=str(self.directory), settings=ChromaSettings(anonymized_telemetry=False)
             )
             self._collection = client.get_or_create_collection(
-                COLLECTION, embedding_function=ONNXMiniLM_L6_V2(), metadata={"hnsw:space": "cosine"}
+                self.collection_name, embedding_function=ONNXMiniLM_L6_V2(), metadata={"hnsw:space": "cosine"}
             )
         except Exception as exc:  # import, model download and disk errors all end up here
             raise VectorStoreUnavailable(f"Vector index unavailable: {exc}") from exc
@@ -75,14 +77,27 @@ class VectorStore:
                     ids=[c["chunk_id"] for c in batch],
                     documents=[c["text"] for c in batch],
                     metadatas=[
-                        {"mine_id": c["mine_id"], "incident_id": c["incident_id"],
-                         "source_id": c["source_id"], "chunk_type": c["chunk_type"]}
+                        {k: v for k, v in c.items() if k not in ("chunk_id", "text") and v is not None}
                         for c in batch
                     ],
                 )
         except Exception as exc:
             raise VectorStoreUnavailable(f"Vector indexing failed: {exc}") from exc
         return {"indexed": len(chunks), "deleted_stale": len(stale), "total": collection.count()}
+
+    def search(self, text: str, limit: int = 10, where: dict | None = None) -> list[dict]:
+        """Semantic ranking over the whole collection (optionally filtered by metadata)."""
+        collection = self._open()
+        try:
+            kwargs = {"where": where} if where else {}
+            res = collection.query(query_texts=[text], n_results=limit,
+                                   include=["metadatas", "distances"], **kwargs)
+        except Exception as exc:
+            raise VectorStoreUnavailable(f"Vector query failed: {exc}") from exc
+        return [
+            {"chunk_id": cid, "distance": dist, **meta}
+            for cid, dist, meta in zip(res["ids"][0], res["distances"][0], res["metadatas"][0], strict=True)
+        ]
 
     def query(self, mine_id: str, text: str, limit: int = 10) -> list[dict]:
         """Semantic ranking strictly inside one mine (exact metadata filter)."""
@@ -96,5 +111,5 @@ class VectorStore:
             raise VectorStoreUnavailable(f"Vector query failed: {exc}") from exc
         return [
             {"chunk_id": cid, "distance": dist, **meta}
-            for cid, dist, meta in zip(res["ids"][0], res["distances"][0], res["metadatas"][0])
+            for cid, dist, meta in zip(res["ids"][0], res["distances"][0], res["metadatas"][0], strict=True)
         ]

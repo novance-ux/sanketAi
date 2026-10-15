@@ -1,4 +1,4 @@
-"""SANKET AI - home page and mine-category routing.
+﻿"""SANKET AI - home page and mine-category routing.
 
 Run with:  streamlit run app.py
 """
@@ -40,7 +40,7 @@ descriptions = {
     "metal_non_coal": "Metalliferous, stone, mineral and oil mines from the SANKET non-coal volume.",
 }
 columns = st.columns(2, gap="large")
-for column, category in zip(columns, CATEGORY_LABELS):
+for column, category in zip(columns, CATEGORY_LABELS, strict=True):
     c = counts.get(category)
     with column:
         with st.container(border=True):

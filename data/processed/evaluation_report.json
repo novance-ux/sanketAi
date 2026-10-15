@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-13T17:32:48+00:00",
+  "generated_at": "2026-10-15T07:39:53+00:00",
   "mines_evaluated": 68,
-  "plan_generator": "offline",
+  "plan_generator": "offline rule engine",
   "semantic_index": "available",
   "mine_identity_accuracy": {
     "checked": 513,

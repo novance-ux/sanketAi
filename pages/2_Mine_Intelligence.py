@@ -10,7 +10,7 @@ import streamlit as st
 from src.agent import MineNotFound
 from src.llm import data_flow_notice, is_llm_enabled
 from src.report import plan_to_markdown
-from src.schemas import CATEGORY_LABELS, SECTION_LABELS, WATER_LABELS, Incident, SourceReference
+from src.schemas import CATEGORY_LABELS, SECTION_LABELS, Incident, SourceReference
 from src.ui import (
     DIRECTORY_PAGE,
     NOT_DOCUMENTED,

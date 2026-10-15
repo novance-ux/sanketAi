@@ -16,13 +16,14 @@ import argparse
 import hashlib
 import json
 import logging
+import re
 import sys
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
 from .config import PIPELINE_VERSION, Settings, configure_logging, get_settings
-from .data_normalizer import NormalizedDataset, load_aliases, normalize
+from .data_normalizer import CATEGORY_PREFIX, NormalizedDataset, load_aliases, normalize
 from .database import Database, dump_json
 from .pdf_extractor import (
     CATEGORY_COAL,
@@ -33,7 +34,7 @@ from .pdf_extractor import (
     file_sha256,
 )
 from .schemas import CATEGORY_LABELS, SECTION_LABELS, WATER_LABELS
-from .vector_store import VectorStore, VectorStoreUnavailable
+from .vector_store import PAGE_COLLECTION, VectorStore, VectorStoreUnavailable
 
 log = logging.getLogger(__name__)
 
@@ -93,6 +94,47 @@ def build_chunks(ds: NormalizedDataset) -> list[dict]:
             chunks.append({**base, "chunk_id": f"{inc.incident_id}::findings", "chunk_type": "findings",
                            "text": f"{header}\nDGMS findings on what would have averted the accident:\n"
                                    f"{inc.findings_text}"})
+    return chunks
+
+
+_RULE_LINE = re.compile(r"^\s*[-=_]{6,}\s*$")
+
+
+def build_page_chunks(results: list[ExtractionResult], max_chars: int = 1400, overlap_lines: int = 3) -> list[dict]:
+    """Split every text page of both volumes into citable passages (one page each, never across pages).
+
+    Used by the document chat, which must answer questions about anything in the volumes - statistics
+    tables, introductions, historic lists - not only the mine-level records. Wide fixed-width tables
+    are kept readable by turning runs of spaces into column separators.
+    """
+    chunks: list[dict] = []
+    for res in results:
+        doc = res.document
+        prefix = CATEGORY_PREFIX.get(doc.category or "", "doc")
+        for page in doc.pages:
+            if page.kind != "text":
+                continue
+            lines = []
+            for raw in page.lines:
+                if not raw.strip() or _RULE_LINE.match(raw):
+                    continue
+                lines.append(re.sub(r"\s{3,}", " | ", raw.strip()))
+            if not lines:
+                continue
+            parts: list[list[str]] = [[]]
+            size = 0
+            for line in lines:
+                if size + len(line) > max_chars and parts[-1]:
+                    parts.append(parts[-1][-overlap_lines:])
+                    size = sum(len(x) for x in parts[-1])
+                parts[-1].append(line)
+                size += len(line) + 1
+            for n, part in enumerate(parts, 1):
+                chunks.append({
+                    "chunk_id": f"P-{prefix}-p{page.page_number:03d}-{n}",
+                    "source_filename": doc.filename, "category": doc.category, "page": page.page_number,
+                    "text": "\n".join(part),
+                })
     return chunks
 
 
@@ -304,6 +346,8 @@ def run_ingestion(settings: Settings | None = None, *, rebuild: bool = False,
             report = json.loads(settings.report_json.read_text(encoding="utf-8"))
             if not skip_vectors:
                 report["vector_index"] = _sync_vectors(settings, db.all_chunks())
+                report["page_vector_index"] = _sync_vectors(settings, db.all_page_chunks(),
+                                                            collection=PAGE_COLLECTION)
                 settings.report_json.write_text(dump_json(report), encoding="utf-8")
                 settings.report_md.write_text(render_report_markdown(report), encoding="utf-8")
             report["skipped"] = True
@@ -344,9 +388,11 @@ def run_ingestion(settings: Settings | None = None, *, rebuild: bool = False,
     if not ds.incidents:
         raise IngestionError("The PDFs were readable but no accident records could be parsed from them.")
     chunks = build_chunks(ds)
+    page_chunks = build_page_chunks(usable)
     settings.processed_dir.mkdir(parents=True, exist_ok=True)
     db.write(
         mines=ds.mines, incidents=ds.incidents, findings=ds.findings, sources=ds.sources, chunks=chunks,
+        page_chunks=page_chunks,
         documents=[{"filename": r.document.filename, "sha256": r.document.sha256,
                     "page_count": r.document.page_count, "category": r.document.category,
                     "title": r.document.title,
@@ -359,6 +405,10 @@ def run_ingestion(settings: Settings | None = None, *, rebuild: bool = False,
                      else _sync_vectors(settings, chunks, force=True))
     report = build_report(usable, failures, ds, vector_status)
     report["missing_categories"] = missing
+    report["totals"]["page_passages"] = len(page_chunks)
+    report["page_vector_index"] = ({"status": "skipped", "reason": "--skip-vectors"} if skip_vectors
+                                   else _sync_vectors(settings, page_chunks, force=True,
+                                                      collection=PAGE_COLLECTION))
     settings.report_json.write_text(dump_json(report), encoding="utf-8")
     settings.report_md.write_text(render_report_markdown(report), encoding="utf-8")
     log.info("Database written to %s", settings.db_path)
@@ -366,9 +416,11 @@ def run_ingestion(settings: Settings | None = None, *, rebuild: bool = False,
     return report
 
 
-def _sync_vectors(settings: Settings, chunks: list[dict], *, force: bool = False) -> dict:
-    """Bring the vector index in line with the chunks. ``force`` re-embeds everything."""
-    store = VectorStore(settings.vector_dir, settings.embedding_backend)
+def _sync_vectors(settings: Settings, chunks: list[dict], *, force: bool = False,
+                  collection: str | None = None) -> dict:
+    """Bring a vector collection in line with the chunks. ``force`` re-embeds everything."""
+    store = (VectorStore(settings.vector_dir, settings.embedding_backend, collection) if collection
+             else VectorStore(settings.vector_dir, settings.embedding_backend))
     if not store.enabled:
         return {"status": "disabled", "reason": "SANKET_EMBEDDING_BACKEND=none"}
     try:
@@ -399,7 +451,9 @@ def main(argv: list[str] | None = None) -> int:
           f"| findings: {t['preventive_findings']} | sources: {t['source_references']}")
     for cat in report["by_category"].values():
         print(f"  {cat['label']}: {cat['mines']} mines, {cat['mines_with_water_related_records']} with water-related records")
-    print(f"Vector index: {report['vector_index'].get('status')}")
+    print(f"Vector index: {report['vector_index'].get('status')} | "
+          f"page passages for document chat: {t.get('page_passages', '-')} "
+          f"(semantic: {report.get('page_vector_index', {}).get('status', '-')})")
     print(f"Audit: {get_settings().report_md}")
     return 0
 

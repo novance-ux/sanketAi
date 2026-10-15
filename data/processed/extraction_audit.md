@@ -1,6 +1,6 @@
 # SANKET AI - Data Extraction Audit
 
-Generated: 2026-10-13T17:32:42+00:00 | pipeline version 1.0.0
+Generated: 2026-10-15T06:12:47+00:00 | pipeline version 1.1.0
 
 ## Summary
 
@@ -478,4 +478,4 @@ No integrity problems found.
 
 ## Vector index
 
-- {"status": "up_to_date", "backend": "onnx-minilm", "total": 1616}
+- {"status": "ok", "backend": "onnx-minilm", "indexed": 1616, "deleted_stale": 0, "total": 1616}

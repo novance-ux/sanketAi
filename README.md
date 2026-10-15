@@ -1,4 +1,4 @@
-# SANKET AI
+﻿# SANKET AI
 
 **Historical Mine Inundation Intelligence & Emergency Decision Support**
 
@@ -77,7 +77,8 @@ read-only and are never moved or modified.
 | `python -m src.ingestion` | Build the database and indexes. Does nothing if the PDFs, alias file and pipeline version are unchanged. |
 | `python -m src.ingestion --rebuild` | Force a full rebuild (use after the source documents change). |
 | `python -m src.ingestion --skip-vectors` | Skip the semantic index (keyword retrieval only). |
-| `streamlit run app.py` | Start the application. |
+| `streamlit run app.py` | Start the application (the chatbot is the **Ask SANKET** button on every page). |
+| `uvicorn src.api:app --host 127.0.0.1 --port 8600` | Optional chat HTTP API with streaming (needs `SANKET_API_TOKEN`). |
 | `python -m pytest tests -q` | Run the automated tests. |
 | `python -m src.evaluation` | Run the evaluation suite on the real dataset. |
 
@@ -108,6 +109,19 @@ rerun `python -m src.ingestion` later to add the semantic index.
      needed, followed by missing information, assumptions, the validation report and the agent trace.
      Download as Markdown or JSON.
    - **Search this mine's records** - keyword + semantic search restricted to the selected mine.
+4. **Document chat** - free-form questions about anything in the two volumes. Retrieval
+   covers every text page (1,280 passages: statistics, tables, findings, historic lists) plus the
+   structured records of any mine named in the question. The model must take at least 80% of the
+   answer from the passages, with a citation marker `[S#]` per sentence. At most 20% may be general
+   background knowledge, each such sentence marked and shown as *(general knowledge)*. Every answer is
+   checked before it is shown (see section 4a), and the result is shown with the cited passages. With
+   no usable model, the chat shows the best-matching passages instead. It is opened from the floating
+   chatbot (item 5); there is no separate chat page. Code: `src/chat.py`.
+5. **Floating chatbot** - an **Ask SANKET** button in the bottom-right corner of every page opens the
+   same chat in a panel over the page (a Streamlit fragment, so the page underneath is not reloaded).
+   It provides streaming drafts, a verification status per answer, expandable sources, conversation
+   history (open, rename, delete, clear), memory controls, **Stop** and **Retry**. It works on desktop
+   and mobile widths. Code: `src/chat_ui.py`.
 
 Labels used throughout: *Documented in source* (blue), *Recommendation / Inference* (amber),
 *Not documented in source* (grey).
@@ -140,6 +154,13 @@ src/agent.py                 Tool orchestration, offline rule engine, plan assem
 src/safety_validation.py     Checks every draft against the evidence
 src/citations.py             Citations, evidence serialisation, PDF verification
 src/report.py                Markdown export
+src/chat.py                  Document chat: page retrieval, water-record index, 80/20 grounding prompt
+src/verification.py          Claim-level checking of a drafted answer against the passages
+src/chat_service.py          Chat orchestration: typed event stream (status/token/citation/done/error)
+src/chat_store.py            Conversations, messages and memory notes (SQLite, per-user isolation)
+src/chat_cache.py            Retrieval/answer cache (SQLite or Redis), keyed on the document version
+src/chat_ui.py               Floating chatbot (bottom-right on every page)
+src/api.py                   HTTP API with Server-Sent Events (FastAPI)
 src/evaluation.py            Evaluation suite
 src/ui.py                    Shared Streamlit helpers
 config/mine_aliases.json     Curated spelling variants
@@ -186,22 +207,120 @@ similarity are fused by reciprocal rank only to order passages inside that mine.
 
 ---
 
+## 4a. Document chat: verified answers, memory and cache
+
+```
+question -> validate + rate limit -> store -> resolve follow-up into a standalone query (model call)
+         -> retrieve: pages of both PDFs (BM25 + vectors, fused) + records of named mines
+                      + for water questions, the complete extracted list of water-related records
+         -> draft answer, streamed as "token" events (shown greyed as an unverified draft)
+         -> verify claims -> redraft once with feedback if too little survives
+         -> "citation" events for the sources the final answer uses -> store -> "done"
+```
+
+**Web facts.** With `SANKET_CHAT_WEB=true`, each question is also searched on DuckDuckGo (`src/web_search.py`,
+no API key; only the question is sent) in parallel with the PDF search. Up to 4 results become passages
+`W1..W4`. The model is asked to add context the PDFs lack (causes, background, aftermath), cite it `[W#]`,
+and never let it override the PDFs. Web facts plus general knowledge are capped at 20% of the answer by
+word count; extra outside sentences are removed automatically. When the PDFs do not answer, web facts are
+shown under an explicit "from internet sources (not from the SANKET documents)" heading. Results are
+cached for a day.
+
+**Checking modes** (`SANKET_CHAT_VERIFY_MODE`). `fast` (default): the answer streams normally, then the
+deterministic checks below run instantly (citations exist; numbers occur in the cited source) and failing
+sentences are removed. The label is "Citations checked", which says honestly that meaning was not checked
+by a second model. `thorough`: adds the independent model check and one redraft (labels "Sources verified"
+/ "Partly verified"), at the cost of 5-30 s per answer. `off`: no checks ("Not checked"). Live timings
+with Groq: about 5-8 s per answer in fast mode, against 20-60 s in thorough mode.
+
+**Verification** (`src/verification.py`, thorough mode; its deterministic part also runs in fast mode). The draft is split into claims (sentences; citations at the
+end of a paragraph cover its earlier sentences). Each claim is typed by its marker: documented `[S#]`,
+inference `[INF]`, general knowledge `[GK]`, a statement that the documents lack the answer, or
+unmarked. Documented, inferred and unmarked claims are checked twice:
+
+1. **Deterministic:** citation markers must refer to retrieved passages, and every number of two or more
+   digits must occur in the supporting passage. A four-digit year also matches the volumes'
+   `dd.mm.yy` dates.
+2. **Independent model check:** a separate call, given only the relevant passages, rates each claim
+   supported / partial / unsupported / contradicted. It is told that a figure from another row is a
+   contradiction, and that claims of absence or completeness need explicit support.
+
+A claim is kept only if both checks pass. Inferences may be partially supported, and an unmarked claim
+is kept only if the checker names a supporting passage, which then becomes its citation. Citation
+markers in the final text are rebuilt from validated ids, so an invented marker never reaches the user.
+General knowledge is not checked against the PDFs; it is capped at 20% and labelled.
+
+The answer status comes from these results, not from the model's own confidence:
+
+| Status | Rule |
+|---|---|
+| verified | Nothing was removed. |
+| partially verified | At least half of the documented content survived. |
+| insufficient evidence | Nothing documented survived, or the documents lack the answer. |
+| unverified | The checker could not run; only deterministic checks were applied. Labelled as such. |
+
+If less than half survives, the answer is redrafted once with the rejected claims as feedback and more
+passages.
+
+**Water-record index.** Questions that mention water, inundation, irruption or drowning also receive one
+passage listing every water-related record extracted from both PDFs. Each row carries its page, and the
+header gives exact totals per class. This was added after live testing: without it, counting and listing
+questions saw only the best-matching pages and gave wrong totals. With it, live answers matched the
+database (coal 38 irruption + 12 drowning; non-coal 4 + 4).
+
+**Memory layers.**
+
+- *Active:* the last three answered exchanges are sent with each question (long answers are trimmed).
+  Follow-ups are rewritten into a standalone search query.
+- *Persistent:* conversations and messages are stored in `data/chat/chat.sqlite3`, with role, content,
+  status, citations, check details and timestamps. Each user is identified by an unguessable token
+  (`?u=...` in the app, the `X-Sanket-User` header in the API) and stored as its SHA-256. Every query
+  filters by owner, so another user's conversation id returns "not found".
+- *Long-term:* per-conversation topic notes built from the user's own questions only (never from model
+  claims). They are used only when the user refers back ("earlier", "you said", "remind me"), are
+  passed as "context only - not evidence", and can be viewed, deleted or switched off.
+
+**Cache** (`src/chat_cache.py`). Retrieval results and verified answers are cached in a local SQLite
+file, or Redis if `SANKET_REDIS_URL` is set. Every key includes the document version (ingestion
+fingerprint of both PDFs + pipeline version + retrieval-logic version), so changing a PDF invalidates
+everything; old entries are purged when the cache opens. Answers are cached only for questions asked
+without prior conversation context. A cached answer is reused only after its passages are confirmed to
+still exist in the current index.
+
+**HTTP API** (`src/api.py`, `uvicorn src.api:app`). `POST /api/chat/stream` returns Server-Sent Events
+(`status`, `token` = unverified draft, `citation`, `done`, `error`). Conversation CRUD and memory endpoints
+are also provided. The API requires `SANKET_API_TOKEN` (it refuses all requests when unset) plus a
+per-user token, and validates request bodies. See [HOW_TO_RUN.md](HOW_TO_RUN.md) section 8 for the
+contract.
+
+**Limits and safety.** Questions are limited per user per minute (`SANKET_CHAT_RATE_LIMIT_PER_MIN`) and
+in length. Answers are rendered as Markdown without HTML, and source excerpts as plain text. Retrieved
+text is delimited and treated as data. Conversation text is not written to the logs.
+
+---
+
 ## 5. Language model and privacy
 
 | `SANKET_LLM_PROVIDER` | Where data goes | Notes |
 |---|---|---|
 | `offline` (default) | Nowhere | Plans are assembled by a deterministic rule engine that quotes the records. |
+| `groq` | Groq Cloud | Default model `openai/gpt-oss-120b` (key `GROQ_API_KEY`). **Configured on this machine.** |
+| `openrouter` | OpenRouter | Default model `nvidia/nemotron-3-super-120b-a12b:free` (key `OPENROUTER_API_KEY`). **Configured here as the fallback.** |
 | `ollama` | Your Ollama server | Local inference. Needs Ollama running and a model pulled (for example `ollama pull llama3.1:8b`, about 8 GB RAM; a larger model follows the structured-output schema more reliably). |
 | `anthropic` | Anthropic API | Default model `claude-opus-5-5`, via the official SDK's structured outputs. |
 | `openai` | OpenAI or a compatible endpoint | Set `SANKET_LLM_BASE_URL` for a self-hosted compatible server. |
 
 - External providers are **blocked** until `SANKET_ALLOW_EXTERNAL_LLM=true` is set. When enabled, only
-  the extracted records of the *selected mine* are sent, per plan request. The sidebar always states the
-  current data flow.
+  the extracted records of the *selected mine* are sent, per plan request, and for the chat only the
+  passages retrieved for each question. The sidebar always states the current data flow.
+- `SANKET_LLM_FALLBACK_PROVIDERS` lists providers to try, in order, when the primary one fails before
+  producing output. This machine uses Groq first and OpenRouter as the fallback. Each answer records
+  which provider wrote it.
 - `SANKET_REDACT_PERSON_NAMES=true` (default) removes victims' names from what is sent to a model.
 - Check your provider's retention and processing terms before enabling it for official data.
 - API keys are read from the environment variable named in `SANKET_LLM_API_KEY_ENV` (default
-  `ANTHROPIC_API_KEY` / `OPENAI_API_KEY`). No key is stored in the code or the repository.
+  `GROQ_API_KEY` / `OPENROUTER_API_KEY` / `ANTHROPIC_API_KEY` / `OPENAI_API_KEY`). No key is stored in
+  the code or the repository; `.env` and `data/chat/` are git-ignored.
 - Embeddings are computed locally. No document text is sent anywhere for indexing.
 - Text extracted from PDFs is treated as untrusted data: it is delimited, angle brackets are neutralised
   and the system prompt instructs the model to ignore embedded instructions. The model has no tools and
@@ -225,7 +344,24 @@ listed in the audit for review and are not merged.
 
 ## 6. Tests and evaluation
 
-`python -m pytest tests -q` - **65 tests, all passing** (about 30 s). They cover:
+`python -m pytest tests -q` - **116 tests, all passing** (about 30 s; no API calls). Besides the areas
+below, `tests/test_chat.py` covers page indexing, chat retrieval, grounding measurement, prompt rules,
+provider fallback, blocked external calls and error messages. `tests/test_chat_service.py` covers:
+
+- per-user isolation and conversation CRUD, and memory controls;
+- cache invalidation when the document version changes;
+- claim typing and splitting;
+- removal of unsupported claims and invented figures, and rebuilding of wrong citation markers;
+- refusals reported as insufficient evidence, and the 20% general-knowledge cap;
+- the "unverified" label when the checker is down, and redrafting;
+- event order, where the stored answer is the verified one and not the draft;
+- follow-up resolution, and memory used only as context;
+- cache reuse, passages-only mode, validation, rate limits and interrupted generation;
+- the SSE API (auth, streaming, isolation);
+- the floating chatbot (open, ask, close, reopen, history).
+
+Those tests replace only the language model with scripted fakes; retrieval, verification logic, storage
+and UI are real. The other test files cover:
 
 - **Ingestion**: both PDFs processed; parsed counts equal the volumes' stated yearly totals; page
   references valid; table cells kept together; missing and corrupted PDFs reported; no sample-data
@@ -259,14 +395,43 @@ enter `data/processed`.
 The relevance sample is small because few mines have several narrated records; treat it as a smoke
 test, not a benchmark.
 
+**Live chat checks (Groq with OpenRouter fallback, real PDFs)**, run during development:
+
+| Question | Result |
+|---|---|
+| What happened at Sayal D colliery in 2017 and what could have prevented it? | Verified; correct narrative and DGMS finding, cited to pp. 118-119 |
+| Which regulation did that finding cite? (follow-up) | Verified; Regulations 129(1) and 127(1) & (3), CMR 1957 |
+| Fatal irruption/drowning accidents, coal vs non-coal | Verified; 38 + 12 coal and 4 + 4 non-coal, equal to the database |
+| Which of those happened in Jharkhand? (follow-up) | Verified; Sayal D, Khoodia, Moonidih (coal), Turamdih, Purnadih Nawada (non-coal) |
+| What did DGMS find could have prevented the Kuardih drowning? | Verified; both findings, cited to p. 119 |
+| Present groundwater level at Turamdih / water level at Chasnalla | "Not established from the documents" |
+| Same question asked twice | Second answer served from cache in 0.1 s |
+| Groq rate-limited or request too large | OpenRouter answered automatically |
+| HTTP API stream | `status -> token -> status -> citation -> done`; a second user got 404 for the first user's conversation |
+
+Before the water-record index was added, live testing produced wrong totals and a wrong date that the
+checker did not catch. This is why that index exists, and why automated checking is described here as
+reducing, not eliminating, errors.
+
 ---
 
 ## 7. Known limitations
 
-- **The LLM path has not been run against a live model.** No API key or local model was available
-  during development. The adapter, prompts, schema and validator are tested with simulated model
-  output; the Anthropic, OpenAI and Ollama calls themselves are untested. The offline rule engine is
-  the tested default.
+- **Live model coverage is partial.** The document chat has been run end to end against Groq and the
+  OpenRouter fallback, and through the HTTP API. Emergency plans written by a language model (instead of
+  the rule engine) have not been reviewed live. The Anthropic, OpenAI and Ollama calls are untested.
+- **Chat verification reduces but cannot eliminate errors.** The checker is itself a language model.
+  Deterministic checks cover citations and numbers, not names: a misspelt mine name in an otherwise
+  supported sentence ("Turamddh") was not caught. Wrong pairings within a long table are possible when
+  the passage is ambiguous. Always open the cited page before acting.
+- **Free-tier model limits.** Groq's free tier rejects requests above roughly 8k tokens per minute; the
+  OpenRouter fallback then answers, more slowly (often 30 s to 2 min). Paid tiers avoid this.
+- **Chat identity is a private link, not a login.** Anyone with the `?u=...` link (or the API user token)
+  can read that user's conversations. Add real authentication before multi-user deployment.
+- **Rate limiting is per process.** Running several app or API processes multiplies the limit; use a
+  shared limiter (for example on Redis) in production.
+- **Stopping generation** interrupts the app's processing, but the provider may finish generating the
+  draft in the background (and bill for it).
 - **Refusal fallback is not enabled** for the Anthropic provider: if the model declines, the offline
   plan is shown with a note, rather than rerouting official data to another model automatically.
 - **Coverage** is limited to what the two volumes print: narratives only for fatal accidents in
@@ -290,8 +455,10 @@ test, not a benchmark.
 
 ## 8. Recommended next steps
 
-1. Run the LLM path against the approved provider or a local model and review plans with mining
-   safety experts before operational use.
+1. Review chat answers and language-model plans with mining safety experts before operational use.
+   Build a fixed question set with expected answers to measure the chat's accuracy over time.
+2. Add a deterministic check of mine names and places against the passages, and replace the private-link
+   identity with real authentication if the app is shared.
 2. Link mines to an authoritative register (DGMS mine codes, coordinates, operator) to confirm identity
    across eras and enable region and map views.
 3. Add verified context sources: approved emergency plans, DGMS circulars and regulations, geological

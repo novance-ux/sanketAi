@@ -54,13 +54,14 @@ def test_home_shows_counts_computed_from_the_records(real_db):
         str(counts["coal"]["water_mines"]), str(counts["coal"]["mines"]),
         str(counts["metal_non_coal"]["water_mines"]), str(counts["metal_non_coal"]["mines"])]
     assert "Mines with water-related records" in shown
-    labels = [b.label for b in at.button]
+    labels = [b.label for b in at.button if b.key != "sanket_fab_btn"]
     assert labels == ["Open Coal Mines directory", "Open Metal / Non-Coal Mines directory"]
+    assert at.button(key="sanket_fab_btn").label == "Ask SANKET"  # floating chatbot on every page
 
 
 def test_category_selection_sets_the_category(real_db):
     at = _run(HOME)
-    at.button[1].click().run()
+    at.button(key="open_metal_non_coal").click().run()
     assert at.session_state["category"] == "metal_non_coal"
 
 
@@ -90,7 +91,7 @@ def test_directory_selection_opens_the_dashboard_for_that_mine(real_db):
     mine = find_mine(real_db, "KUARDIH", "coal")
     at = _run(DIRECTORY, category="coal")
     at.selectbox(key="dir_pick_coal").set_value(mine.mine_id).run()
-    at.button[0].click().run()
+    next(b for b in at.button if b.label == "Open dashboard").click().run()
     assert at.session_state["mine_id"] == mine.mine_id
 
 

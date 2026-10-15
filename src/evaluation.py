@@ -11,7 +11,7 @@ Measures, for every mine that has water-related records:
 * unsupported-claim rate  - share of plan statements the safety validator had to remove.
 
 Results are printed and written to data/processed/evaluation_report.json. The plan metric
-describes whichever generator is configured (the offline rule engine unless an LLM is enabled).
+always uses the offline rule engine so results are repeatable and no model quota is spent.
 """
 from __future__ import annotations
 
@@ -72,7 +72,7 @@ def run_evaluation() -> dict:
                 hy = retriever.hybrid_search(mine.mine_id, query, 3)
                 rel_kw += bool(kw) and kw[0].incident_id == inc.incident_id
                 rel_hybrid += bool(hy) and hy[0].incident_id == inc.incident_id
-        result = agent.run(mine.mine_id)
+        result = agent.run(mine.mine_id, use_llm=False)  # deterministic, free, repeatable
         v = result.plan.validation
         steps += v.steps_total
         backed += v.steps_evidence_backed
@@ -90,7 +90,7 @@ def run_evaluation() -> dict:
     report = {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "mines_evaluated": len(mines),
-        "plan_generator": agent.settings.llm_provider,
+        "plan_generator": "offline rule engine",
         "semantic_index": "available" if retriever.vector_error is None and retriever.vectors.count() else "unavailable",
         "mine_identity_accuracy": {"checked": identity_total, "correct": identity_ok, "percent": pct(identity_ok, identity_total)},
         "citation_correctness": {"checked": cite_total, "verified_on_cited_pages": cite_ok,

@@ -1,4 +1,4 @@
-# Core application
+﻿# Core application
 streamlit>=1.40
 plotly>=5.24
 pandas>=2.2
@@ -17,6 +17,14 @@ langchain-core>=0.3.25
 langchain-anthropic>=0.3.0
 langchain-openai>=0.2.12
 langchain-ollama>=0.2.1
+langchain-groq>=1.1
+
+# Chat HTTP API (src/api.py) and optional Redis cache
+fastapi>=0.115
+uvicorn>=0.30
+redis>=5.0
+# Web search for the chat's secondary facts (DuckDuckGo, no API key)
+ddgs>=9.0
 
 # Testing
 pytest>=8.3

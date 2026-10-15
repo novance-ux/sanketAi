@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import logging
 import os
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -18,11 +18,26 @@ load_dotenv(PROJECT_ROOT / ".env")
 
 # Bump when extraction/normalisation logic changes so that ingestion knows the stored
 # database is stale even if the PDFs themselves are unchanged.
-PIPELINE_VERSION = "1.0.0"
+PIPELINE_VERSION = "1.1.0"  # 1.1.0: page-level index of both volumes for the document chat
 
-LLM_PROVIDERS = ("offline", "anthropic", "openai", "ollama")
+LLM_PROVIDERS = ("offline", "groq", "openrouter", "anthropic", "openai", "ollama")
 # Providers that send the evidence bundle to a third-party service.
-EXTERNAL_PROVIDERS = ("anthropic", "openai")
+EXTERNAL_PROVIDERS = ("groq", "openrouter", "anthropic", "openai")
+
+DEFAULT_MODELS = {
+    "groq": "openai/gpt-oss-120b",
+    "openrouter": "nvidia/nemotron-3-super-120b-a12b:free",
+    "anthropic": "claude-opus-5-5",
+    "openai": "gpt-5.5",
+    "ollama": "llama3.1:8b",
+}
+DEFAULT_KEY_ENVS = {
+    "groq": "GROQ_API_KEY",
+    "openrouter": "OPENROUTER_API_KEY",
+    "anthropic": "ANTHROPIC_API_KEY",
+    "openai": "OPENAI_API_KEY",
+}
+DEFAULT_BASE_URLS = {"openrouter": "https://openrouter.ai/api/v1"}
 
 
 def _path(value: str) -> Path:
@@ -67,6 +82,12 @@ class Settings:
         default_factory=lambda: os.getenv("SANKET_LLM_API_KEY_ENV", "").strip()
     )
     llm_base_url: str = field(default_factory=lambda: os.getenv("SANKET_LLM_BASE_URL", "").strip())
+    # Providers tried in order when the primary one fails, e.g. "openrouter" or "openrouter,ollama".
+    llm_fallback_providers: tuple[str, ...] = field(
+        default_factory=lambda: tuple(
+            p.strip().lower() for p in os.getenv("SANKET_LLM_FALLBACK_PROVIDERS", "").split(",") if p.strip()
+        )
+    )
     llm_max_tokens: int = field(
         default_factory=lambda: int(os.getenv("SANKET_LLM_MAX_TOKENS", "8000"))
     )
@@ -77,7 +98,47 @@ class Settings:
     redact_person_names: bool = field(
         default_factory=lambda: _flag("SANKET_REDACT_PERSON_NAMES", True)
     )
+    # --- document chat ---------------------------------------------------
+    # Model for the chat page (defaults to SANKET_LLM_MODEL / the provider default).
+    chat_model_name: str = field(default_factory=lambda: os.getenv("SANKET_CHAT_MODEL", "").strip())
+    # Reasoning effort for reasoning-capable OpenAI models (none|low|medium|high); blank = provider default.
+    chat_reasoning_effort: str = field(
+        default_factory=lambda: os.getenv("SANKET_CHAT_REASONING_EFFORT", "low").strip().lower()
+    )
+    # Largest share of an answer that may be general knowledge rather than the PDFs.
+    chat_max_general_share: float = field(
+        default_factory=lambda: float(os.getenv("SANKET_CHAT_MAX_GENERAL_SHARE", "0.20"))
+    )
+    chat_passages: int = field(default_factory=lambda: int(os.getenv("SANKET_CHAT_PASSAGES", "8")))
+    # Chat persistence, cache, verification and abuse limits
+    chat_dir: Path = field(default_factory=lambda: _path(os.getenv("SANKET_CHAT_DIR", "data/chat")))
+    redis_url: str = field(default_factory=lambda: os.getenv("SANKET_REDIS_URL", "").strip())
+    cache_ttl_s: int = field(default_factory=lambda: int(os.getenv("SANKET_CACHE_TTL_S", "86400")))
+    # fast     = instant checks after the answer streams: citations must exist and every number must occur
+    #            in the cited passage (no extra model call; label "Citations checked").
+    # thorough = fast checks plus an independent model check of every statement, with one redraft
+    #            if too little survives (slower; label "Sources verified").
+    # off      = no checks (label "Not checked").
+    chat_verify_mode: str = field(
+        default_factory=lambda: os.getenv("SANKET_CHAT_VERIFY_MODE", "fast").strip().lower())
+    # Internet search for secondary facts (DuckDuckGo; only the question is sent, never PDF text).
+    chat_web: bool = field(default_factory=lambda: _flag("SANKET_CHAT_WEB", False))
+    chat_web_results: int = field(default_factory=lambda: int(os.getenv("SANKET_CHAT_WEB_RESULTS", "4")))
+    chat_web_timeout_s: int = field(default_factory=lambda: int(os.getenv("SANKET_CHAT_WEB_TIMEOUT_S", "7")))
+    chat_max_regenerations: int = field(default_factory=lambda: int(os.getenv("SANKET_CHAT_MAX_REGENERATIONS", "1")))
+    chat_rate_limit_per_min: int = field(default_factory=lambda: int(os.getenv("SANKET_CHAT_RATE_LIMIT_PER_MIN", "12")))
+    chat_max_message_chars: int = field(default_factory=lambda: int(os.getenv("SANKET_CHAT_MAX_MESSAGE_CHARS", "2000")))
+    # Shared secret required by the HTTP API (src/api.py). The API refuses requests when unset.
+    api_token: str = field(default_factory=lambda: os.getenv("SANKET_API_TOKEN", "").strip())
     log_level: str = field(default_factory=lambda: os.getenv("SANKET_LOG_LEVEL", "INFO").upper())
+
+    @property
+    def chat_verify(self) -> bool:
+        """True when the slower model-based check runs (thorough mode)."""
+        return self.chat_verify_mode == "thorough"
+
+    def chat_model(self) -> str:
+        return self.chat_model_name or self.default_model()
 
     # --- derived paths --------------------------------------------------
     @property
@@ -87,6 +148,14 @@ class Settings:
     @property
     def vector_dir(self) -> Path:
         return _path(os.getenv("SANKET_VECTOR_DIR", str(self.processed_dir / "chroma")))
+
+    @property
+    def chat_db_path(self) -> Path:
+        return self.chat_dir / "chat.sqlite3"
+
+    @property
+    def cache_path(self) -> Path:
+        return self.chat_dir / "cache.sqlite3"
 
     @property
     def report_json(self) -> Path:
@@ -101,20 +170,38 @@ class Settings:
         return self.llm_provider in EXTERNAL_PROVIDERS
 
     def default_model(self) -> str:
-        if self.llm_model:
-            return self.llm_model
-        return {
-            "anthropic": "claude-opus-5-5",
-            "openai": "gpt-4o",
-            "ollama": "llama3.1:8b",
-        }.get(self.llm_provider, "")
+        return self.llm_model or DEFAULT_MODELS.get(self.llm_provider, "")
 
     def api_key(self) -> str | None:
-        env = self.llm_api_key_env or {
-            "anthropic": "ANTHROPIC_API_KEY",
-            "openai": "OPENAI_API_KEY",
-        }.get(self.llm_provider, "")
+        env = self.llm_api_key_env or DEFAULT_KEY_ENVS.get(self.llm_provider, "")
         return os.getenv(env) if env else None
+
+    def base_url(self) -> str | None:
+        return self.llm_base_url or DEFAULT_BASE_URLS.get(self.llm_provider)
+
+    def for_provider(self, provider: str) -> "Settings":
+        """Settings for a fallback provider: its own model, key variable and endpoint.
+
+        Per-provider overrides: SANKET_<PROVIDER>_MODEL, SANKET_<PROVIDER>_API_KEY_ENV,
+        SANKET_<PROVIDER>_BASE_URL (for example SANKET_OPENROUTER_MODEL).
+        """
+        p = provider.strip().lower()
+        prefix = f"SANKET_{p.upper()}_"
+        return replace(
+            self, llm_provider=p,
+            llm_model=os.getenv(prefix + "MODEL", "").strip(),
+            llm_api_key_env=os.getenv(prefix + "API_KEY_ENV", "").strip(),
+            llm_base_url=os.getenv(prefix + "BASE_URL", "").strip(),
+            chat_model_name="",
+        )
+
+    def provider_chain(self) -> list["Settings"]:
+        """Primary provider followed by the fallbacks in SANKET_LLM_FALLBACK_PROVIDERS."""
+        chain = [self]
+        for name in self.llm_fallback_providers:
+            if name and name != self.llm_provider and name in LLM_PROVIDERS and name != "offline":
+                chain.append(self.for_provider(name))
+        return chain
 
 
 def get_settings() -> Settings:

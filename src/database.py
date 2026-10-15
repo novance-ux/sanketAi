@@ -60,7 +60,20 @@ CREATE TABLE chunks (
 );
 CREATE INDEX idx_chunks_mine ON chunks (mine_id);
 CREATE VIRTUAL TABLE chunks_fts USING fts5 (chunk_id UNINDEXED, mine_id UNINDEXED, text, tokenize = 'porter unicode61');
+CREATE TABLE page_chunks (
+    chunk_id TEXT PRIMARY KEY, source_filename TEXT NOT NULL, category TEXT,
+    page INTEGER NOT NULL, text TEXT NOT NULL
+);
+CREATE INDEX idx_page_chunks_page ON page_chunks (source_filename, page);
+CREATE VIRTUAL TABLE pages_fts USING fts5 (chunk_id UNINDEXED, text, tokenize = 'porter unicode61');
 """
+
+# Words that match nearly every page and only dilute keyword ranking.
+_STOPWORDS = frozenset(
+    "a an and are as at be by did do does for from had has have how i in is it its many me much of on or "
+    "per show tell than that the their there these this to was were what when where which who why will "
+    "with you your about give list all any".split()
+)
 
 
 class DatabaseNotReady(RuntimeError):
@@ -97,6 +110,7 @@ class Database:
         chunks: Iterable[dict],
         documents: Iterable[dict],
         meta: dict[str, str],
+        page_chunks: Iterable[dict] = (),
     ) -> None:
         """Build a fresh database next to the old one and swap it in atomically."""
         from .data_normalizer import norm_name
@@ -145,6 +159,14 @@ class Database:
             conn.executemany(
                 "INSERT INTO chunks_fts (chunk_id, mine_id, text) VALUES (:chunk_id, :mine_id, :text)",
                 chunks,
+            )
+            page_chunks = list(page_chunks)
+            conn.executemany(
+                "INSERT INTO page_chunks VALUES (:chunk_id, :source_filename, :category, :page, :text)",
+                page_chunks,
+            )
+            conn.executemany(
+                "INSERT INTO pages_fts (chunk_id, text) VALUES (:chunk_id, :text)", page_chunks
             )
             conn.commit()
         os.replace(tmp, self.path)
@@ -260,6 +282,11 @@ class Database:
         found = {s.source_id: s for s in (SourceReference.model_validate_json(r["data"]) for r in rows)}
         return {sid: found[sid] for sid in values if sid in found}
 
+    def get_mine_for_incident(self, incident_id: str) -> str | None:
+        with self._connect() as conn:
+            row = conn.execute("SELECT mine_id FROM incidents WHERE incident_id = ?", (incident_id,)).fetchone()
+        return row["mine_id"] if row else None
+
     def chunks_for_mine(self, mine_id: str) -> list[dict]:
         with self._connect() as conn:
             return [dict(r) for r in conn.execute(
@@ -284,11 +311,43 @@ class Database:
             ).fetchall()
         return [dict(r) for r in rows]
 
+    # ------------------------------------------------------------------ whole-document pages
+    def page_keyword_search(self, query: str, limit: int = 12, category: str | None = None) -> list[dict]:
+        """BM25 search over every text page of both volumes (used by the document chat)."""
+        terms = [t for t in re.findall(r"[A-Za-z0-9]{2,}", query or "") if t.lower() not in _STOPWORDS][:24]
+        if not terms:
+            return []
+        match = " OR ".join(f'"{t}"' for t in terms)
+        sql = ("SELECT p.*, bm25(pages_fts) AS score FROM pages_fts "
+               "JOIN page_chunks p ON p.chunk_id = pages_fts.chunk_id WHERE pages_fts MATCH ?")
+        args: list = [match]
+        if category:
+            sql += " AND p.category = ?"
+            args.append(category)
+        sql += " ORDER BY score LIMIT ?"
+        args.append(limit)
+        with self._connect() as conn:
+            return [dict(r) for r in conn.execute(sql, args)]
+
+    def get_page_chunks(self, chunk_ids: Iterable[str]) -> dict[str, dict]:
+        values = list(dict.fromkeys(chunk_ids))
+        if not values:
+            return {}
+        with self._connect() as conn:
+            rows = conn.execute(
+                f"SELECT * FROM page_chunks WHERE chunk_id IN ({','.join('?' * len(values))})", values
+            ).fetchall()
+        return {r["chunk_id"]: dict(r) for r in rows}
+
+    def all_page_chunks(self) -> list[dict]:
+        with self._connect() as conn:
+            return [dict(r) for r in conn.execute("SELECT * FROM page_chunks ORDER BY chunk_id")]
+
     def stats(self) -> dict[str, int]:
         with self._connect() as conn:
             return {
                 t: conn.execute(f"SELECT COUNT(*) FROM {t}").fetchone()[0]
-                for t in ("mines", "incidents", "findings", "sources", "chunks")
+                for t in ("mines", "incidents", "findings", "sources", "chunks", "page_chunks")
             }
 
 
