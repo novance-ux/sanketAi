@@ -1,4 +1,4 @@
-﻿"""SANKET AI - home page and mine-category routing.
+﻿"""Inundation - home page and mine-category routing.
 
 Run with:  streamlit run app.py
 """
@@ -19,7 +19,7 @@ from src.ui import (
 
 page_setup("Home")
 
-st.title("SANKET AI")
+st.title("Inundation")
 st.markdown('<p class="sk-sub">Historical Mine Inundation Intelligence &amp; Emergency Decision Support</p>',
             unsafe_allow_html=True)
 st.write(

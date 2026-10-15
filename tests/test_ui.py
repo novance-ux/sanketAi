@@ -47,16 +47,15 @@ def _all_text(at: AppTest) -> str:
 def test_home_shows_counts_computed_from_the_records(real_db):
     at = _run(HOME)
     counts = real_db.category_counts()
-    assert at.title[0].value == "SANKET AI"
+    assert at.title[0].value == "Inundation"
     shown = {m.label: m.value for m in at.metric}
     assert str(counts["coal"]["water_mines"]) in [m.value for m in at.metric]
     assert [m.value for m in at.metric] == [
         str(counts["coal"]["water_mines"]), str(counts["coal"]["mines"]),
         str(counts["metal_non_coal"]["water_mines"]), str(counts["metal_non_coal"]["mines"])]
     assert "Mines with water-related records" in shown
-    labels = [b.label for b in at.button if b.key != "sanket_fab_btn"]
+    labels = [b.label for b in at.button]
     assert labels == ["Open Coal Mines directory", "Open Metal / Non-Coal Mines directory"]
-    assert at.button(key="sanket_fab_btn").label == "Ask SANKET"  # floating chatbot on every page
 
 
 def test_category_selection_sets_the_category(real_db):

@@ -10,7 +10,7 @@ def plan_to_markdown(plan: EmergencyPlan) -> str:
     kind = ("Mine-specific plan" if plan.plan_type == "mine_specific"
             else "GENERIC SAFETY FRAMEWORK - no mine-specific water-related record was found")
     out = [
-        f"# SANKET AI - Emergency Decision-Support Plan: {m.mine_name}", "",
+        f"# Inundation - Emergency Decision-Support Plan: {m.mine_name}", "",
         f"> {plan.disclaimer}", "",
         f"- Plan type: {kind}",
         f"- Category: {CATEGORY_LABELS[m.mine_category]}",

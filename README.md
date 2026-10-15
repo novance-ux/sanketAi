@@ -1,8 +1,8 @@
-﻿# SANKET AI
+﻿# Inundation
 
 **Historical Mine Inundation Intelligence & Emergency Decision Support**
 
-SANKET AI helps mining authorities in India (District Magistrates, mine managers, safety officers) who
+Inundation helps mining authorities in India (District Magistrates, mine managers, safety officers) who
 take charge of mines in an unfamiliar region. For a selected mine it shows the water-related accidents
 recorded in the DGMS SANKET volumes, what the DGMS inquiry found would have prevented them, and an
 evidence-grounded emergency response plan. Every statement links to the source PDF page.
@@ -77,7 +77,7 @@ read-only and are never moved or modified.
 | `python -m src.ingestion` | Build the database and indexes. Does nothing if the PDFs, alias file and pipeline version are unchanged. |
 | `python -m src.ingestion --rebuild` | Force a full rebuild (use after the source documents change). |
 | `python -m src.ingestion --skip-vectors` | Skip the semantic index (keyword retrieval only). |
-| `streamlit run app.py` | Start the application (the chatbot is the **Ask SANKET** button on every page). |
+| `streamlit run app.py` | Start the application (the chatbot is the **Inundation chat** button on every page). |
 | `uvicorn src.api:app --host 127.0.0.1 --port 8600` | Optional chat HTTP API with streaming (needs `SANKET_API_TOKEN`). |
 | `python -m pytest tests -q` | Run the automated tests. |
 | `python -m src.evaluation` | Run the evaluation suite on the real dataset. |
@@ -117,11 +117,23 @@ rerun `python -m src.ingestion` later to add the semantic index.
    checked before it is shown (see section 4a), and the result is shown with the cited passages. With
    no usable model, the chat shows the best-matching passages instead. It is opened from the floating
    chatbot (item 5); there is no separate chat page. Code: `src/chat.py`.
-5. **Floating chatbot** - an **Ask SANKET** button in the bottom-right corner of every page opens the
-   same chat in a panel over the page (a Streamlit fragment, so the page underneath is not reloaded).
-   It provides streaming drafts, a verification status per answer, expandable sources, conversation
-   history (open, rename, delete, clear), memory controls, **Stop** and **Retry**. It works on desktop
-   and mobile widths. Code: `src/chat_ui.py`.
+5. **Inundation chat page** (sidebar item; a round shortcut button in the corner of every other page) -
+   a full-window, ChatGPT-style workspace. Its sidebar holds only Back to main menu, New chat, Recents and
+   Memory. A dropdown beside the send arrow picks the answer mode: *Research report* (web research
+   fact-checked against the PDFs), *Quick answer* (internet only: web search plus the model, `[W#]`
+   citations checked instantly) or *PDF answer* (the PDFs first, up to 20% web context). A new chat opens on
+   a "Where should we begin?" start screen with example questions. It provides streaming answers, expandable sources, charts, fact-check
+   tables, **Stop** and **Retry**. Code: `src/chat_ui.py`, `pages/0_Bot.py`.
+6. **Research report mode** (`src/research.py`) - an agentic pipeline: query understanding (roles,
+   organisation, places, intent, assumptions, clarification when needed) -> targeted web and news searches
+   with pages read and dates kept -> PDF evidence (including every water-related record of the
+   organisation's mines, matched exactly by owner) -> claim-by-claim PDF fact-check (supported /
+   contradicted / qualified / not addressed; page citations validated, figures checked) -> charts built only
+   from PDF data -> a streamed structured report -> citation and figure post-check. The internet is the
+   primary evidence and the PDFs are the independent check. Live test with the ECL example: about 23-42 s,
+   correct ECL-only records (Kuardih, Khoodia, Sodepur, Nimcha (R)). Two limits: results from the free
+   search service vary between runs, and the model can still misattribute facts that the checks do not
+   catch (see Known limitations).
 
 Labels used throughout: *Documented in source* (blue), *Recommendation / Inference* (amber),
 *Not documented in source* (grey).
@@ -424,6 +436,10 @@ reducing, not eliminating, errors.
   Deterministic checks cover citations and numbers, not names: a misspelt mine name in an otherwise
   supported sentence ("Turamddh") was not caught. Wrong pairings within a long table are possible when
   the passage is ambiguous. Always open the cited page before acting.
+- **Research reports depend on what the free web search returns.** DuckDuckGo throttles rapid queries,
+  so some runs find several relevant sources and others only one or two; the report then leans on the PDFs
+  and says so. Live runs also showed misattributions that no automatic check caught (historic Jharia-field
+  accidents described as ECL's). Rules now forbid this, but treat organisation-level statements with care.
 - **Free-tier model limits.** Groq's free tier rejects requests above roughly 8k tokens per minute; the
   OpenRouter fallback then answers, more slowly (often 30 s to 2 min). Paid tiers avoid this.
 - **Chat identity is a private link, not a login.** Anyone with the `?u=...` link (or the API user token)

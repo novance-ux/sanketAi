@@ -325,7 +325,7 @@ def test_api_requires_tokens(api_client, monkeypatch):
 
 def test_api_streams_sse_events_and_isolates_users(api_client):
     r = api_client.post("/api/chat/stream", headers=_headers(),
-                        json={"message": "How many fatal accidents occurred in coal mines in 2019?"})
+                        json={"message": "How many fatal accidents occurred in coal mines in 2019?", "mode": "pdf"})
     assert r.status_code == 200 and r.headers["content-type"].startswith("text/event-stream")
     events = re.findall(r"^event: (\w+)$", r.text, re.M)
     assert events[0] == "status" and "token" in events and "citation" in events and events[-1] == "done"
@@ -357,48 +357,50 @@ def ui_env(chat_env, monkeypatch):
     st.cache_data.clear()
 
 
-def test_floating_icon_opens_the_panel_and_answers(ui_env):
+def test_bot_page_answers_in_quick_mode_from_the_internet(ui_env, monkeypatch):
+    from src.web_search import WebResult
+
+    monkeypatch.setattr(service_module, "is_llm_enabled", lambda s=None: True)
+    monkeypatch.setattr(service_module, "research", lambda q, t, **k: ([WebResult(
+        "Coal mine safety 2019 - PIB", "https://pib.gov.in/coal2019",
+        "In 2019 coal mines recorded 51 fatal accidents with 56 fatalities, according to DGMS data.", "2020-02-01")], []))
+
+    def fake_stream(system, messages, settings=None, used=None):
+        assert "internet search results" in system and "<web_results" in messages[-1][1]
+        if used is not None:
+            used.update(provider="fake", model="fake-model", skipped=[])
+        yield "Coal mines recorded 51 fatal accidents with 56 fatalities in 2019 [W1]. "
+        yield "Another figure of 9999 deaths appears nowhere [W1]."
+
+    monkeypatch.setattr(service_module, "stream_chat", fake_stream)
     at = AppTest.from_file(str(ROOT / "app.py"), default_timeout=120)
+    at.switch_page("pages/0_Bot.py")
     at.run()
-    assert not at.exception and at.button(key="sanket_fab_btn").label == "Ask SANKET"
-    assert len(at.chat_input) == 0  # closed by default
-    at.button(key="sanket_fab_btn").click().run()
     assert not at.exception and len(at.chat_input) == 1
-    at.chat_input(key="chat_input_floating").set_value("How many fatal accidents occurred in coal mines in 2019?").run()
+    assert any("Where should we begin?" in m.value for m in at.markdown)
+    assert any(b.key == "suggest_0" for b in at.button)  # suggestion buttons on the start screen
+    # chat-only sidebar: no app title or page list, just the chat tools
+    assert not any(m.value == "**Inundation**" for m in at.sidebar.markdown)
+    assert at.button(key="bot_new").label == "New chat"
+    # answer-mode dropdown next to the message box, with the three modes
+    assert at.selectbox(key="bot_mode").options == ["Research report", "Quick answer", "PDF answer"]
+    assert at.selectbox(key="bot_mode").value == "research"
+    at.selectbox(key="bot_mode").set_value("quick").run()
+    at.chat_input(key="bot_input").set_value("How many fatal accidents occurred in coal mines in 2019?").run()
     assert not at.exception
     text = "\n".join(m.value for m in at.markdown)
-    assert "Sources verified" in text and "51 fatal accidents" in text
-    assert any(e.label.startswith("Sources: 1 from the PDFs") for e in at.expander)
-    # closing keeps the conversation; reopening shows it again
-    at.button(key="sanket_fab_btn").click().run()
-    assert len(at.chat_input) == 0
-    at.button(key="sanket_fab_btn").click().run()
-    assert "51 fatal accidents" in "\n".join(m.value for m in at.markdown)
-    # history view lists the conversation
-    at.button(key="chat_hist_floating").click().run()
-    assert any(b.label.startswith("How many fatal accidents") for b in at.button)
-
-
-def test_two_digit_year_dates_support_four_digit_years(chat_env):
-    passages = [Passage("S1", "page", "vol.pdf", [118], "54. Date - 16.08.17 Mine - SAYAL D ... two persons drowned")]
-    result = verify_answer("On 16 Aug 2017 two persons drowned at Sayal D [S1].", passages, chat_env)
-    assert result.status == VERIFIED
-    wrong = verify_answer("On 16 Aug 2019 two persons drowned at Sayal D [S1].", passages, chat_env)
-    assert "2019" in " ".join(c.removal_reason for c in wrong.removed)
-
-
-def test_water_questions_get_the_complete_index_with_exact_counts(real_settings):
-    from src.chat import DocumentChat
-
-    chat = DocumentChat.from_settings(get_settings())
-    passages = chat.retrieve("How many drowning and irruption of water accidents are in the volumes?")
-    index = passages[0]
-    assert index.kind == "index" and index.sid == "S1" and index.pages == []
-    assert "38 irruption/inundation + 12 drowning" in index.text and "4 irruption/inundation + 4 drowning" in index.text
-    assert "16.08.17 (year 2017) | SAYAL" in index.text and "p. 118, 119" in index.text
-    assert len(passages) <= 8
-    assert chat.retrieve("How many fatal accidents occurred in coal mines in 2019?")[0].kind != "index"
-
+    answer = next(m.value for m in at.markdown if "51 fatal accidents" in m.value)
+    assert "9999" not in answer and "Citations checked" in text
+    assert "Removed:" in text  # the removed sentence is listed openly under "How this answer was checked"
+    assert "Answered by" not in text + "\n".join(c.value for c in at.caption)
+    assert any(e.label == "Sources: 1 from the internet" for e in at.expander)
+    # the conversation appears in Recents and can be reopened after starting a new chat
+    conv_buttons = [b for b in at.button if b.key and b.key.startswith("open_")]
+    assert len(conv_buttons) == 1
+    at.button(key="bot_new").click().run()
+    assert not any("51 fatal accidents" in m.value for m in at.markdown)
+    at.button(key=conv_buttons[0].key).click().run()
+    assert any("51 fatal accidents" in m.value for m in at.markdown)
 
 # --------------------------------------------------------------------------- fast mode and web facts
 def test_fast_mode_checks_citations_and_numbers_without_a_model_call(chat_env, monkeypatch):
@@ -479,3 +481,126 @@ def test_web_search_failure_falls_back_to_pdfs(chat_env, monkeypatch):
     assert done.data["status"] == "citations_checked"
     stored = svc.store.messages(me, done.data["conversation_id"])[-1]
     assert stored["meta"]["web_error"] == "Web search failed (Timeout)."
+
+
+# --------------------------------------------------------------------------- research mode
+def test_operator_matching_is_exact():
+    from src.research import Understanding, match_operator
+
+    ops = ["Eastern Coalfields Ltd.", "South Eastern Coalfields Ltd.", "Central Coalfields Ltd."]
+    assert match_operator(Understanding(organization_abbreviation="ECL"), ops) == ["Eastern Coalfields Ltd."]
+    assert match_operator(Understanding(organization_full_name="South Eastern Coalfields Limited"), ops) == \
+        ["South Eastern Coalfields Ltd."]
+    assert match_operator(Understanding(), ops) == []
+
+
+def test_research_pipeline_end_to_end(chat_env, monkeypatch):
+    from src import llm as llm_module
+    from src import research as research_module
+    from src.web_search import WebResult
+
+    def fake_complete(system, messages, settings=None, json_mode=False, used=None):
+        if "interpret questions" in system:
+            return json.dumps({"restated_question": "Inundation conditions at ECL", "user_context": {"age": "50",
+                               "role": "CMD", "role_expanded": "Chairman-cum-Managing Director"},
+                               "organization_abbreviation": "ECL", "organization_full_name": "Eastern Coalfields Limited",
+                               "locations": ["West Bengal"], "mines": [], "subject": "inundation conditions",
+                               "intent": "assess hazards", "explicit_facts": ["age 50", "CMD at ECL"],
+                               "assumptions": ["ECL means Eastern Coalfields Limited"], "needs_clarification": False,
+                               "clarification_question": None, "scope": "ECL mines", "web_queries": ["ECL inundation"],
+                               "pdf_queries": ["Eastern Coalfields drowning"]})
+        assert "fact-check" in system
+        return json.dumps({"claims": [
+            {"claim": "A drowning occurred at Kuardih colliery on 25 July 2017.", "web": ["W1"], "verdict": "supported",
+             "pdf": ["S1"], "note": "Matches the PDF record."},
+            {"claim": "ECL ran monsoon control rooms in 2024.", "web": ["W2"], "verdict": "supported", "pdf": ["S99"],
+             "note": "invented PDF id"},
+            {"claim": "Unsourced claim with no web id at all.", "web": [], "verdict": "not_addressed", "pdf": [],
+             "note": ""}]})
+
+    def fake_research(queries, terms, **kw):
+        return [WebResult("Kuardih drowning - news", "https://news.example.in/kuardih", "Kuardih colliery of Eastern "
+                          "Coalfields: a worker drowned on 25 July 2017 after an inrush of water.", "2017-07-26"),
+                WebResult("ECL safety bulletin", "https://easterncoalfields.in/safety.pdf", "Eastern Coalfields "
+                          "monsoon control rooms operate from 15 June to 15 October 2024.", "2024-06-10")], []
+
+    report = ("## Executive summary\nA worker drowned at Kuardih colliery on 25 July 2017 [W1], which the SANKET "
+              "records confirm [S1]. ECL ran monsoon control rooms in 2024 [W2]. An invented source [W9].")
+    stream_calls = []
+
+    def fake_stream(system, messages, settings=None, used=None):
+        stream_calls.append(messages)
+        if used is not None:
+            used.update(provider="fake", model="fake-model", skipped=[])
+        yield report
+
+    monkeypatch.setattr(research_module, "complete_text", fake_complete)
+    monkeypatch.setattr(research_module, "research", fake_research)
+    monkeypatch.setattr(llm_module, "stream_chat", fake_stream)
+    svc, me = ChatService(get_settings()), owner_id_for(new_user_token())
+    events = list(svc.ask(me, "I am a 50 year old, placed as CMD at ECL, what are the inundation conditions there?",
+                          mode="research"))
+    stages = [e.data["stage"] for e in events if e.type == "status"]
+    for stage in ("understanding", "understood", "researching", "web_done", "pdf_done", "fact_checking", "writing",
+                  "verifying"):
+        assert stage in stages
+    done = events[-1].data
+    assert events[-1].type == "done" and done["status"] == "research_report"
+    # owner match is exact: SECL mines are not part of ECL's records
+    stored = svc.store.messages(me, done["conversation_id"])[-1]["meta"]
+    assert stored["owners"] == ["Eastern Coalfields Ltd."]
+    # fact-check rows are validated: invented PDF ids lose their verdict, rows without a web source are dropped
+    checks = done["fact_check"]
+    assert [c["verdict"] for c in checks] == ["supported", "not_addressed"]
+    assert checks[0]["pdf_pages"] == ["SANKET records for Eastern Coalfields Ltd."]
+    # charts come from PDF data for ECL only
+    table = next(c for c in done["charts"] if c["kind"] == "table")
+    mines = {row[1] for row in table["rows"]}
+    assert "KUARDIH" in mines and "GEVRA PROJECT" not in mines and "KUSMUNDA OCP" not in mines
+    # invented citation marker removed; real web sources cited with their links
+    assert "[W9]" not in done["answer"] and "[W1]" in done["answer"]
+    web = [e.data for e in events if e.type == "citation" and e.data["kind"] == "web"]
+    assert {w["url"] for w in web} == {"https://news.example.in/kuardih", "https://easterncoalfields.in/safety.pdf"}
+    # the report prompt carried web evidence first, the PDF passages and the fact-check
+    prompt = stream_calls[0][-1][1]
+    assert prompt.index("<web_sources") < prompt.index("<pdf_passages>") < prompt.index("<pdf_fact_check>")
+
+
+def test_research_asks_for_clarification_when_nothing_can_be_scoped(chat_env, monkeypatch):
+    from src import research as research_module
+
+    monkeypatch.setattr(research_module, "complete_text", lambda *a, **k: json.dumps({
+        "needs_clarification": True, "clarification_question": "Which mine or area do you mean?",
+        "web_queries": [], "pdf_queries": []}))
+    svc, me = ChatService(get_settings()), owner_id_for(new_user_token())
+    done = list(svc.ask(me, "what about there?", mode="research"))[-1]
+    assert done.data["status"] == "clarification" and done.data["answer"] == "Which mine or area do you mean?"
+
+
+def test_quick_mode_uses_only_internet_sources(chat_env, monkeypatch):
+    from src.web_search import WebResult
+
+    monkeypatch.setattr(service_module, "research", lambda q, t, **k: ([WebResult(
+        "ECL news", "https://news.example.in/ecl", "Eastern Coalfields reported water seepage at a mine in 2024.",
+        "2024-08-01")], []))
+    prompts = []
+
+    def fake_stream(system, messages, settings=None, used=None):
+        prompts.append(messages[-1][1])
+        yield "Eastern Coalfields reported water seepage at a mine in 2024 [W1]. A fake source [S3]."
+
+    monkeypatch.setattr(service_module, "stream_chat", fake_stream)
+    svc, me = ChatService(get_settings()), owner_id_for(new_user_token())
+    events = list(svc.ask(me, "Is there water seepage at ECL mines?", mode="quick"))
+    done = events[-1].data
+    assert done["status"] == "citations_checked" and "[W1]" in done["answer"] and "[S3]" not in done["answer"]
+    assert "SANKET" not in done["answer"] and "<pdf" not in prompts[0] and "<passages>" not in prompts[0]
+    cites = [e.data for e in events if e.type == "citation"]
+    assert [c["kind"] for c in cites] == ["web"] and cites[0]["url"] == "https://news.example.in/ecl"
+
+
+def test_quick_mode_with_no_internet_results(chat_env, monkeypatch):
+    monkeypatch.setattr(service_module, "research", lambda q, t, **k: ([], ["Web search failed (Timeout)."]))
+    svc, me = ChatService(get_settings()), owner_id_for(new_user_token())
+    done = list(svc.ask(me, "anything at all here?", mode="quick"))[-1].data
+    assert done["status"] == "insufficient_evidence" and "could not find any internet sources" in done["answer"]

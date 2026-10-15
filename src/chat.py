@@ -40,7 +40,7 @@ NOT_IN_DOCUMENTS = "The two SANKET volumes provided do not contain this informat
 _COMMON_WORD_NAMES = {"INDUSTRY", "CENTRAL", "SOUTH", "NORTH", "EAST", "WEST", "PROJECT", "COLLIERY",
                       "MINES", "QUARRY", "INCLINE", "NATIONAL", "UNION", "SPECIAL"}
 
-CHAT_SYSTEM_PROMPT = """You are SANKET AI's document assistant. You answer questions for mining officials in India using two DGMS publications: "SANKET - Statistical Analysis & Numbers: Key Evaluation of Trends in Coal Mine Accidents" and the equivalent volume for Non-Coal Mine Accidents. You are given numbered passages retrieved from these two PDFs.
+CHAT_SYSTEM_PROMPT = """You are Inundation's document assistant. You answer questions for mining officials in India using two DGMS publications: "SANKET - Statistical Analysis & Numbers: Key Evaluation of Trends in Coal Mine Accidents" and the equivalent volume for Non-Coal Mine Accidents. You are given numbered passages retrieved from these two PDFs.
 
 Grounding rules - follow them exactly:
 1. Base the answer on the passages. At least {min_doc_pct}% of what you write must come from them. End every sentence that uses a passage with its marker in plain square brackets, e.g. [S2] or [S1][S4] - not 【S2】 or any other bracket style. Mark each sentence, not just the end of a paragraph.
@@ -168,7 +168,9 @@ _WORD = re.compile(r"[A-Za-z0-9]+")
 
 def normalise_markers(answer: str) -> str:
     """Accept the citation styles models actually produce: 【S1】, [S1†L3], [ S1 ]."""
-    text = answer.replace("【", "[").replace("】", "]")
+    # models sometimes put zero-width characters inside markers ("[\u200bS1\u200b]"); remove them first
+    text = re.sub(r"[\u200b\u200c\u200d\u2060\ufeff]", "", answer)
+    text = text.replace("【", "[").replace("】", "]")
     return re.sub(r"\[\s*(S\d+)\s*†[^\]]*\]", r"[\1]", text)
 
 

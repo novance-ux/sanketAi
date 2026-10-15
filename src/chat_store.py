@@ -61,9 +61,13 @@ UNVERIFIED = "unverified"    # checks could not run (verifier unavailable); labe
 PASSAGES_ONLY = "passages_only"  # no model available; quoted passages only
 ERROR = "error"
 CHECKED = "citations_checked"  # fast mode: citations exist and numbers occur in the cited sources
+RESEARCH = "research_report"   # research mode: web evidence, PDF fact-check, citations and figures checked
+CLARIFY = "clarification"      # research mode: the question could not be scoped; a question is asked back
 NOT_CHECKED = "not_checked"    # checks switched off
 STATUS_LABELS = {
     CHECKED: "Citations checked",
+    RESEARCH: "Research report - web evidence, PDF fact-checked",
+    CLARIFY: "Clarification needed",
     NOT_CHECKED: "Not checked",
     PENDING: "Interrupted - no answer was completed",
     VERIFIED: "Sources verified",

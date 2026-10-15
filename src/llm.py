@@ -323,7 +323,7 @@ def _langchain_chat_model(s: Settings, model_name: str, *, streaming: bool = Fal
                   max_tokens=s.llm_max_tokens, streaming=streaming,
                   max_retries=0 if s.llm_provider == "openrouter" else 1)
     if s.llm_provider == "openrouter":
-        kwargs["default_headers"] = {"X-Title": "SANKET AI"}
+        kwargs["default_headers"] = {"X-Title": "Inundation"}
         if s.chat_reasoning_effort:
             # OpenRouter's unified reasoning control; models without reasoning ignore it
             effort = "low" if s.chat_reasoning_effort == "none" else s.chat_reasoning_effort

@@ -255,7 +255,7 @@ def build_report(results: list[ExtractionResult], failures: list[dict], ds: Norm
 
 
 def render_report_markdown(report: dict) -> str:
-    out = ["# SANKET AI - Data Extraction Audit", "",
+    out = ["# Inundation - Data Extraction Audit", "",
            f"Generated: {report['generated_at']} | pipeline version {report['pipeline_version']}", ""]
     t = report["totals"]
     out += ["## Summary", "",

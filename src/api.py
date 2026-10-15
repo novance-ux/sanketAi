@@ -30,7 +30,7 @@ from .chat_service import ChatService
 from .chat_store import NotFound, owner_id_for
 from .config import get_settings
 
-app = FastAPI(title="SANKET AI chat API", version="1.0.0",
+app = FastAPI(title="Inundation chat API", version="1.0.0",
               description="PDF-grounded, claim-verified question answering over the two DGMS SANKET volumes.")
 
 
@@ -56,6 +56,8 @@ class ChatRequest(BaseModel):
     message: str = Field(min_length=1, max_length=4000)
     conversation_id: str | None = Field(default=None, pattern=r"^[0-9a-f]{32}$")
     category: Literal["coal", "metal_non_coal"] | None = None
+    # quick = internet only; research = web research + PDF fact-check report; pdf = PDFs first
+    mode: Literal["quick", "research", "pdf"] = "quick"
 
 
 class TitleRequest(BaseModel):
@@ -83,7 +85,7 @@ def chat_stream(req: ChatRequest, owner_id: str = Depends(owner)) -> StreamingRe
             raise HTTPException(404, "Conversation not found.") from exc
 
     def events():
-        for ev in service.ask(owner_id, req.message, req.conversation_id, req.category):
+        for ev in service.ask(owner_id, req.message, req.conversation_id, req.category, req.mode):
             yield ev.sse()
 
     return StreamingResponse(events(), media_type="text/event-stream",

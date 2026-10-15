@@ -15,7 +15,6 @@ from .agent import SanketAgent
 from .chat import DocumentChat
 from .config import get_settings
 from .database import Database
-from .llm import data_flow_notice
 from .retrievers import Retriever
 from .schemas import CATEGORY_LABELS, Mine
 
@@ -23,6 +22,7 @@ NOT_DOCUMENTED = "Not documented in source"
 DIRECTORY_PAGE = "pages/1_Mine_Directory.py"
 DASHBOARD_PAGE = "pages/2_Mine_Intelligence.py"
 AUDIT_PAGE = "pages/3_Data_Audit.py"
+BOT_PAGE = "pages/0_Bot.py"
 
 # Validated categorical palette (colour-blind safe on a light surface); each series also
 # gets its own marker symbol so identity never depends on colour alone.
@@ -52,50 +52,51 @@ h1, h2, h3 {letter-spacing: -0.01em;}
            font-size: .95rem; white-space: pre-wrap;}
 .sk-banner {border: 1px solid #c3c2b7; border-left: 4px solid #52514e; padding: .6rem .9rem; background: #f8f8f5;
             font-size: .9rem; border-radius: 3px; margin-bottom: .8rem;}
-/* floating chatbot */
+/* corner shortcut to the Bot page */
 .st-key-sanket_fab {position: fixed; bottom: 22px; right: 22px; z-index: 1001; width: auto !important;}
-.st-key-sanket_fab button {border-radius: 999px; min-height: 48px; padding: 0 18px; background: #184f95;
-            color: #fff; border: none; box-shadow: 0 4px 14px rgba(0,0,0,.22);}
-.st-key-sanket_fab button:hover {background: #104281; color: #fff;}
-.st-key-sanket_chat_panel {position: fixed; bottom: 82px; right: 22px; width: min(440px, calc(100vw - 32px));
-            max-height: min(80vh, 760px); overflow-y: auto; z-index: 1000; background: #ffffff;
-            border: 1px solid #d9d8d2; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,.18);
-            padding: 12px 14px 8px 14px;}
-.st-key-sanket_chat_panel [data-testid="stChatMessage"] {padding: .45rem .6rem; border-radius: 10px;
-            margin-bottom: .35rem;}
-.st-key-sanket_chat_panel [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) {
-            flex-direction: row-reverse; background: #e8f0fb; margin-left: 14%; text-align: right;}
-.st-key-sanket_chat_panel [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]) {
-            background: #f6f6f3; margin-right: 4%;}
+.st-key-sanket_fab a {border-radius: 999px; padding: 10px 20px; background: #184f95; box-shadow: 0 4px 14px rgba(0,0,0,.22);}
+.st-key-sanket_fab a:hover {background: #104281;}
+.st-key-sanket_fab a p, .st-key-sanket_fab a span {color: #ffffff !important; font-weight: 600;}
+/* Bot page conversation: questions on the right, answers on the left */
+.st-key-bot_messages {border: none; background: transparent; padding: 0 6%;}
+.st-key-bot_messages [data-testid="stChatMessage"] {padding: .7rem 1rem; border-radius: 18px; margin-bottom: .8rem;
+            font-size: 1.02rem; line-height: 1.6;}
+.st-key-bot_messages [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) {
+            flex-direction: row-reverse; background: #ecebe6; margin-left: 30%; text-align: left;}
+.st-key-bot_messages [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]) {
+            background: transparent;}
+.sk-hero {text-align: center; font-size: 2rem; font-weight: 500; margin: 14vh 0 1.4rem 0; color: #0b0b0b;}
+[data-testid="stChatInput"] textarea {font-size: 1.05rem;}
 .sk-draft {color: #6b6a65; background: #f6f6f3; border: 1px dashed #c3c2b7; border-radius: 6px;
            padding: .5rem .7rem; font-size: .92rem;}
 @media (max-width: 640px) {
-  .st-key-sanket_chat_panel {left: 8px; right: 8px; width: auto; bottom: 76px; max-height: 82vh;}
   .st-key-sanket_fab {bottom: 14px; right: 14px;}
+  .st-key-bot_messages [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) {margin-left: 6%;}
 }
 </style>
 """
 
 
-def page_setup(title: str, *, floating_chat: bool = True) -> None:
-    st.set_page_config(page_title=f"SANKET AI - {title}", layout="wide", initial_sidebar_state="expanded")
+def page_setup(title: str, *, floating_chat: bool = True, wide_page: bool = False, show_nav: bool = True) -> None:
+    st.set_page_config(page_title=f"Inundation - {title}", layout="wide", initial_sidebar_state="expanded")
     st.markdown(_CSS, unsafe_allow_html=True)
+    if wide_page:  # the chat uses nearly the whole window
+        st.markdown("<style>.block-container {max-width: 1500px; padding-top: 1.2rem;}</style>",
+                    unsafe_allow_html=True)
     if floating_chat:
         from .chat_ui import render_floating_chat
 
         render_floating_chat()
+    if not show_nav:  # the chat page has its own sidebar (back link, conversations)
+        return
     with st.sidebar:
-        st.markdown("**SANKET AI**")
+        st.markdown("**Inundation**")
         st.caption("Historical mine inundation intelligence and emergency decision support")
         st.page_link("app.py", label="Home")
         st.page_link(DIRECTORY_PAGE, label="Mine directory")
+        st.page_link(BOT_PAGE, label="Inundation chat")
         st.page_link(DASHBOARD_PAGE, label="Mine intelligence dashboard")
         st.page_link(AUDIT_PAGE, label="Data audit and system status")
-        st.divider()
-        st.caption("Data flow")
-        st.caption(data_flow_notice())
-        st.divider()
-        st.caption("Decision-support aid. Not an official order; verify every item with qualified personnel.")
 
 
 # --------------------------------------------------------------------------- cached access

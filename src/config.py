@@ -125,6 +125,12 @@ class Settings:
     chat_web: bool = field(default_factory=lambda: _flag("SANKET_CHAT_WEB", False))
     chat_web_results: int = field(default_factory=lambda: int(os.getenv("SANKET_CHAT_WEB_RESULTS", "4")))
     chat_web_timeout_s: int = field(default_factory=lambda: int(os.getenv("SANKET_CHAT_WEB_TIMEOUT_S", "7")))
+    # Research reports (Bot page): internet research first, PDFs as an independent fact-check layer.
+    # A smaller model handles query understanding and fact-checking so the report model keeps its quota.
+    research_fast_model: str = field(
+        default_factory=lambda: os.getenv("SANKET_RESEARCH_FAST_MODEL", "").strip())
+    research_sources: int = field(default_factory=lambda: int(os.getenv("SANKET_RESEARCH_SOURCES", "8")))
+    research_pages_to_read: int = field(default_factory=lambda: int(os.getenv("SANKET_RESEARCH_PAGES", "5")))
     chat_max_regenerations: int = field(default_factory=lambda: int(os.getenv("SANKET_CHAT_MAX_REGENERATIONS", "1")))
     chat_rate_limit_per_min: int = field(default_factory=lambda: int(os.getenv("SANKET_CHAT_RATE_LIMIT_PER_MIN", "12")))
     chat_max_message_chars: int = field(default_factory=lambda: int(os.getenv("SANKET_CHAT_MAX_MESSAGE_CHARS", "2000")))
@@ -136,6 +142,12 @@ class Settings:
     def chat_verify(self) -> bool:
         """True when the slower model-based check runs (thorough mode)."""
         return self.chat_verify_mode == "thorough"
+
+    def research_fast(self) -> "Settings":
+        """Settings for the light research steps (query understanding, fact-check)."""
+        default_fast = {"groq": "openai/gpt-oss-20b"}.get(self.llm_provider, "")
+        model = self.research_fast_model or default_fast
+        return replace(self, chat_model_name=model) if model else self
 
     def chat_model(self) -> str:
         return self.chat_model_name or self.default_model()

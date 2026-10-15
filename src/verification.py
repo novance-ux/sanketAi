@@ -368,3 +368,40 @@ def compose_answer(claims: list[Claim], status: str) -> str:
         return "This cannot be established from the two SANKET volumes provided." + (
             ("\n\n" + " ".join(extra)) if extra else "")
     return body or NOT_IN_DOCUMENTS
+
+
+def verify_web_answer(answer: str, passages: list[Passage]) -> VerificationResult:
+    """Instant checks for an internet-only answer: citations must point to a retrieved web result and every
+    number must appear in the cited result. No model call; failing sentences are removed."""
+    by_id = {p.sid: p for p in passages}
+    claims = split_claims(answer)
+    for c in claims:
+        if c.kind in ("refusal", "general"):
+            c.keep = True
+            continue
+        _deterministic(c, by_id)
+        if c.bad_citations and not [i for i in c.cited if i in by_id]:
+            c.removal_reason = f"cites source(s) that were not retrieved: {', '.join(c.bad_citations)}"
+            continue
+        if c.figures_missing:
+            c.removal_reason = f"number(s) not found in the cited source: {', '.join(c.figures_missing)}"
+            continue
+        c.cited = [i for i in c.cited if i in by_id]
+        c.keep = True
+    kept = [c for c in claims if c.keep]
+    words = sum(c.words for c in kept)
+    result = VerificationResult(status=CHECKED if kept else INSUFFICIENT, answer="", claims=claims,
+                                checker_used=False,
+                                checker_error="Citations and numbers were checked instantly; no model check was run.",
+                                doc_words_total=words, doc_words_kept=words)
+    lines: dict[int, list[str]] = {}
+    for c in kept:
+        text = c.raw.strip()
+        if c.kind not in ("refusal", "general"):
+            text = re.sub(r"\s+([.,;:!?])", r"\1", _MARKER.sub("", text)).rstrip()
+            if c.cited:
+                text += " " + "".join(f"[{i}]" for i in c.cited)
+        lines.setdefault(c.line, []).append(text)
+    result.answer = "\n".join(f"- {' '.join(v)}" if len(lines) > 1 else " ".join(v) for v in lines.values()) or \
+        "I could not find enough reliable information on the internet to answer this."
+    return result
